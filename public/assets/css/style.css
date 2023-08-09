@@ -1,0 +1,224 @@
+/* Body */
+
+.bg-orange {
+    background-color: #C15E28;
+}
+
+/* End Body */
+
+/* Fonts */
+* {
+    font-family: "Montserrat", sans-serif;
+    text-transform: none !important;
+}
+
+.fs-8 {
+    font-size: 8px !important  ;
+}
+
+.fs-12 {
+    font-size: 12px !important  ;
+}
+
+.fs-14 {
+    font-size: 14px !important  ;
+}
+
+.fs-16 {
+    font-size: 16px !important  ;
+}
+
+.fs-20 {
+    font-size: 20px !important  ;
+}
+
+.fs-24 {
+    font-size: 24px !important  ;
+}
+
+.fs-28 {
+    font-size: 28px !important;
+}
+
+.fs-30 {
+    font-size: 30px !important  ;
+}
+
+.fs-34 {
+    font-size: 34px !important  ;
+}
+
+.fs-40 {
+    font-size: 40px !important  ;
+}
+
+.fs-44 {
+    font-style: 44px !important;
+}
+
+.text-orange {
+    color: #C15E28 !important;
+}
+.text-default {
+    color: #4f4f4f;
+}
+
+.fw-light {
+    font-weight: 300 !important;
+}
+.fw-regular {
+    font-weight: 400 !important;
+}
+
+.fw-medium {
+    font-weight: 500 !important;
+}
+
+.fw-semibold {
+    font-weight: 600 !important;
+}
+
+.fw-bold {
+    font-weight: 700 !important;
+}
+
+.nav-item .nav-link:hover {
+    color: #C15E28 !important;
+}
+
+.nav-active {
+    background-color: #C15E28;
+    border-radius: 20px 20px 20px 20px;
+}
+
+.nav-active-color {
+    color: white !important;
+}
+
+.text-indent-1 {
+    text-indent: 1.5em; /* Atur jarak spasi sesuai kebutuhan */
+  }
+
+.text-spacing {
+    line-height: 35px;
+}
+
+.text-justify {
+    text-align: justify;
+}
+/* Fonts End */
+
+/* ETC */
+
+.button-orange {
+    background-color: #C15E28;
+    color: white;
+    border-radius: 15px;
+    cursor: pointer;
+    padding: 10px 20px 10px 20px;
+  }
+  
+  .button-orange:hover {
+    background-color: #953d1b; /* Warna lebih gelap saat tombol dihover */
+    color: white;
+  }
+
+/* ETC End*/
+
+/* ----------------------- SECTION HOME --------------------*/
+#carousel-home {
+    min-height: 80vh;
+}
+
+#carousel-home .carousel-inner {
+    min-height: 80vh;
+}
+
+@media screen and (max-width: 576px) {
+    #carousel-home .rounded-circle {
+        height: 300px !important;
+        width: 300px !important;
+        padding-bottom: 10%;
+        object-fit: cover !important;
+    }
+}
+
+#carousel-home .rounded-circle {
+    height: 500px;
+    width: 500px;
+    object-fit: cover !important;
+}
+
+.card-img-top {
+    height: 400px !important;
+    object-fit: cover !important;
+}
+
+.img-tentang-home {
+    width: 500px !important;
+    height: 500px !important;
+    object-fit: cover !important;
+}
+
+/* ----------------------- END OF SECTION HOME --------------------*/
+
+
+/* ----------------------- SECTION MENU --------------------*/
+
+#carousel-kategori .rounded-circle {
+    height: 300px;
+    width: 300px;
+    object-fit: cover !important;
+}
+
+/* ----------------------- END OF SECTION MENU --------------------*/
+
+
+/* ----------------------- SECTION CART --------------------*/
+
+/* *{margin: 0;padding: 0;-webkit-font-smoothing: antialiased;-webkit-text-shadow: rgba(0,0,0,.01) 0 0 1px;text-shadow: rgba(0,0,0,.01) 0 0 1px}body{font-family: 'Rubik', sans-serif;font-size: 14px;font-weight: 400;background: #E0E0E0;color: #000000}ul{list-style: none;margin-bottom: 0px}.button{display: inline-block;background: #0e8ce4;border-radius: 5px;height: 48px;-webkit-transition: all 200ms ease;-moz-transition: all 200ms ease;-ms-transition: all 200ms ease;-o-transition: all 200ms ease;transition: all 200ms ease}.button a{display: block;font-size: 18px;font-weight: 400;line-height: 48px;color: #FFFFFF;padding-left: 35px;padding-right: 35px}.button:hover{opacity: 0.8}.cart_section{width: 100%;padding-top: 93px;padding-bottom: 111px}.cart_title{font-size: 30px;font-weight: 500}.cart_items{margin-top: 8px}.cart_list{border: solid 1px #e8e8e8;box-shadow: 0px 1px 5px rgba(0,0,0,0.1);background-color: #fff}.cart_item{width: 100%;padding: 15px;padding-right: 46px}.cart_item_image{width: 100px !important;height: 100px !important;float: left; object-fit: cover !important;}.cart_item_info{width: calc(100% - 133px);float: left;padding-top: 18px}.cart_item_name{margin-left: 7.53%}.cart_item_title{font-size: 14px;font-weight: 400;color: rgba(0,0,0,0.5)}.cart_item_text{font-size: 18px;margin-top: 35px}.cart_item_text span{display: inline-block;width: 20px;height: 20px;border-radius: 50%;margin-right: 11px;-webkit-transform: translateY(4px);-moz-transform: translateY(4px);-ms-transform: translateY(4px);-o-transform: translateY(4px);transform: translateY(4px)}.cart_item_price{text-align: right}.cart_item_total{text-align: right}.order_total{width: 100%;height: 60px;margin-top: 30px;border: solid 1px #e8e8e8;box-shadow: 0px 1px 5px rgba(0,0,0,0.1);padding-right: 46px;padding-left: 15px;background-color: #fff}.order_total_title{display: inline-block;font-size: 14px;color: rgba(0,0,0,0.5);line-height: 60px}.order_total_amount{display: inline-block;font-size: 18px;font-weight: 500;margin-left: 26px;line-height: 60px}.cart_buttons{margin-top: 60px;text-align: right}.cart_button_clear{display: inline-block;border: none;font-size: 18px;font-weight: 400;line-height: 48px;color: rgba(0,0,0,0.5);background: #FFFFFF;border: solid 1px #b2b2b2;padding-left: 35px;padding-right: 35px;outline: none;cursor: pointer;margin-right: 26px}.cart_button_clear:hover{border-color: #0e8ce4;color: #0e8ce4}.cart_button_checkout{display: inline-block;border: none;font-size: 18px;font-weight: 400;line-height: 48px;color: #FFFFFF;padding-left: 35px;padding-right: 35px;outline: none;cursor: pointer;vertical-align: top} */
+.icon-hover-primary:hover {
+    border-color: #3b71ca !important;
+    background-color: white !important;
+  }
+  
+  .icon-hover-primary:hover i {
+    color: #3b71ca !important;
+  }
+  .icon-hover-danger:hover {
+    border-color: #dc4c64 !important;
+    background-color: white !important;
+  }
+  
+  .icon-hover-danger:hover i {
+    color: #dc4c64 !important;
+  }
+
+/* ----------------------- END OF SECTION CART --------------------*/
+
+/* ----------------------- SECTION CHECKOUT --------------------*/
+
+.checkout-img {
+    border-radius: 5px;
+    width: 90px;
+    height: 90px;
+    overflow: hidden;
+}
+
+/* ----------------------- END OF SECTION CHECKOUT --------------------*/
+
+/* ----------------------- SECTION DETAIL MENU --------------------*/
+
+.detail-menu-img {
+    width: 550px !important;
+    height: 550px !important;
+    object-fit: cover !important;
+}
+
+.card-menu-lainnya {
+    width: 300px !important;
+    height: 400px !important;
+    object-fit: cover !important;
+}
+
+/* ----------------------- END OF SECTION DETAIL MENU --------------------*/

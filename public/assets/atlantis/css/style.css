@@ -1,0 +1,82 @@
+.create-container {
+    border: 0;
+    border-radius: 5px;
+    box-shadow: 2px 6px 15px 0px rgba(69, 65, 78, 0.1);
+}
+
+
+* {
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Fonts */
+
+.fs-8 {
+    font-size: 8px !important  ;
+}
+
+.fs-12 {
+    font-size: 12px !important  ;
+}
+
+.fs-14 {
+    font-size: 14px !important  ;
+}
+
+.fs-16 {
+    font-size: 16px !important  ;
+}
+
+.fs-20 {
+    font-size: 20px !important  ;
+}
+
+.fs-24 {
+    font-size: 24px !important  ;
+}
+
+.fs-28 {
+    font-size: 28px !important;
+}
+
+.fs-30 {
+    font-size: 30px !important  ;
+}
+
+.fs-34 {
+    font-size: 34px !important  ;
+}
+
+.fs-40 {
+    font-size: 40px !important  ;
+}
+
+.fs-44 {
+    font-style: 44px !important;
+}
+
+.text-orange {
+    color: #C15E28 !important;
+}
+.text-default {
+    color: #4f4f4f;
+}
+
+.fw-light {
+    font-weight: 300 !important;
+}
+.fw-regular {
+    font-weight: 400 !important;
+}
+
+.fw-medium {
+    font-weight: 500 !important;
+}
+
+.fw-semibold {
+    font-weight: 600 !important;
+}
+
+.fw-bold {
+    font-weight: 700 !important;
+}
