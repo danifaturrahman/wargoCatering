@@ -109,19 +109,17 @@
 
     <!-- Start Categories of The Month -->
     <section class="container py-5">
-        <div class="row text-center py-3">
-            <div class="col-lg-6 m-auto mb-3">
-                <p class="text-orange fw-bold fs-20 m-0">WARGO CATERING</p>
-                <p class="fs-28 text-default fw-semibold">
-                    Tentang Wargo Catering
-                </p>
-            </div>
-        </div>
         <div class="row">
-            <div class="col-12 col-lg-6 text-center">
+            <div class="col-12 col-lg-5 d-flex justify-content-center align-items-center">
                 <img src="/assets/img/logo-wargo-catering2.png" class="img-fluid" style="width: 60%" alt="">
             </div>
-            <div class="col-12 col-lg-6">
+            <div class="col-12 col-lg-7">
+                <div class="row pt-3">
+                    <p class="text-orange fw-bold fs-20 m-0">Wargo Catering</p>
+                    <p class="fs-28 fw-bold title-section">
+                        Histori mengenai Wargo Catering.
+                    </p>
+                </div>
                 <p class="text-default text-indent-1 text-spacing text-justify">
                     Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eius, perferendis aut. Quas officiis
                     necessitatibus explicabo ut! Tempora aperiam ratione ab commodi odio culpa aliquid asperiores vel,
@@ -141,17 +139,102 @@
     </section>
     <!-- End Categories of The Month -->
 
+    <section id="faq" class="bg-light">
+        <div class="container py-5">
+            <div class="row text-center pt-3 mb-3">
+                <p class="text-orange fw-bold fs-20 m-0">FAQ</p>
+                <p class="fs-28 fw-bold title-section">
+                    Pertanyaan yang sering ditanyakan pelanggan Wargo Catering.
+                </p>
+            </div>
+            <div class="container w-75">
+                {{-- @foreach ($faqs as $faq) --}}
+                <div class="accordion" id="accordionExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button collapsed fs-20 fw-regular" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#1" aria-expanded="true" aria-controls="1">
+                                {{-- {{ $faq->title }} --}}
+                                HALOOOOO
+                            </button>
+                        </h2>
+                        <div id="1" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                            data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <p class="fw-regular fs-20">AJSNDJASNDJASNDJASNDJSANDJASNDJAS</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion" id="accordionExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button collapsed fs-20 fw-regular" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#2" aria-expanded="true" aria-controls="2">
+                                {{-- {{ $faq->title }} --}}
+                                HALOOOOO
+                            </button>
+                        </h2>
+                        <div id="2" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                            data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <p class="fw-regular fs-20">AJSNDJASNDJASNDJASNDJSANDJASNDJAS</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion" id="accordionExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button collapsed fs-20 fw-regular" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#3" aria-expanded="true" aria-controls="3">
+                                {{-- {{ $faq->title }} --}}
+                                HALOOOOO
+                            </button>
+                        </h2>
+                        <div id="3" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                            data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <p class="fw-regular fs-20">AJSNDJASNDJASNDJASNDJSANDJASNDJAS</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion" id="accordionExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button collapsed fs-20 fw-regular" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#4" aria-expanded="true" aria-controls="4">
+                                {{-- {{ $faq->title }} --}}
+                                HALOOOOO
+                            </button>
+                        </h2>
+                        <div id="4" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                            data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <p class="fw-regular fs-20">AJSNDJASNDJASNDJASNDJSANDJASNDJAS</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{-- @endforeach --}}
+
+            </div>
+        </div>
+    </section>
+
 
     <!-- Start Featured Product -->
-    <section class="bg-light">
+    <section class="">
         <div class="container py-5">
-            <div class="row text-center py-3">
-                <div class="col-lg-6 m-auto">
-                    <p class="text-orange fw-bold fs-20 m-0">MENU TERBARU</p>
-                    <p class="fs-28 text-default fw-semibold">
-                        Menu terbaru dari Wargo Catering
-                    </p>
-                </div>
+            <div class="row text-center pt-3 mb-3">
+                <p class="text-orange fw-bold fs-20 m-0">Menu Terbaru</p>
+                <p class="fs-28 fw-bold title-section">
+                    Menu-menu terbaru dari Wargo Catering.
+                </p>
             </div>
 
             <div class="row">
@@ -172,7 +255,7 @@
                             <a href="" class=" text-muted text-decoration-none">
                                 <p>Prasmanan</p>
                             </a>
-                            <p class="mb-3 fw-semibold text-orange">Rp. 25,000</p>
+                            <p class="mb-4 fw-semibold text-orange">Rp. 25,000</p>
                             <p><a class="button-orange text-decoration-none">Masukkan Keranjang</a></p>
                         </div>
                     </div>
@@ -195,7 +278,7 @@
                             <a href="" class=" text-muted text-decoration-none">
                                 <p>Prasmanan</p>
                             </a>
-                            <p class="mb-3 fw-semibold text-orange">Rp. 25,000</p>
+                            <p class="mb-4 fw-semibold text-orange">Rp. 25,000</p>
                             <p><a class="button-orange text-decoration-none">Masukkan Keranjang</a></p>
                         </div>
                     </div>
@@ -218,7 +301,7 @@
                             <a href="" class=" text-muted text-decoration-none">
                                 <p>Prasmanan</p>
                             </a>
-                            <p class="mb-3 fw-semibold text-orange">Rp. 25,000</p>
+                            <p class="mb-4 fw-semibold text-orange">Rp. 25,000</p>
                             <p><a class="button-orange text-decoration-none">Masukkan Keranjang</a></p>
                         </div>
                     </div>

@@ -23,6 +23,7 @@ Route::get('/coba', [wargoCateringController::class, 'coba']);
 Route::get('/home', [wargoCateringController::class, 'home']);
 Route::get('/', [wargoCateringController::class, 'home']);
 Route::get('/menu', [wargoCateringController::class, 'menu']);
+Route::get('/kategori/{id}', [wargoCateringController::class, 'kategori']);
 Route::get('/detail-menu/{id}', [wargoCateringController::class, 'detailMenu']);
 Route::get('/contact', [wargoCateringController::class, 'contact']);
 Route::get('/testimoni', [wargoCateringController::class, 'testimoni']);
@@ -33,7 +34,6 @@ Route::get('/cart', [wargoCateringController::class, 'cart']);
 Route::group(['middleware' => ['auth', 'Pelanggan']], function () {
 
     Route::get('/checkout', [wargoCateringController::class, 'checkout']);
-    Route::get('/kategori/{id}', [wargoCateringController::class, 'kategori']);
     Route::get('/user-dashboard-profile', [wargoCateringController::class, 'userProfile']);
     Route::get('/user-dashboard-order', [wargoCateringController::class, 'userOrder']);
     Route::get('/user-dashboard-notification', [wargoCateringController::class, 'userNotification']);

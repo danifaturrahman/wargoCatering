@@ -46,23 +46,23 @@
             <div class="flex-fill">
                 <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
                     <li class="nav-item {{ Request::is('home', ' ') ? 'nav-active' : '' }}">
-                        <a class="nav-link mx-2 {{ Request::is('home') ? 'nav-active-color' : '' }}"
+                        <a class="nav-link mx-1 {{ Request::is('home') ? 'nav-active-color' : '' }}"
                             href="/home">Beranda</a>
                     </li>
                     <li class="nav-item {{ Request::is('menu') ? 'nav-active' : '' }}">
-                        <a class="nav-link mx-2 {{ Request::is('menu') ? 'nav-active-color' : '' }}"
+                        <a class="nav-link mx-1 {{ Request::is('menu') ? 'nav-active-color' : '' }}"
                             href="/menu">Menu</a>
                     </li>
                     <li class="nav-item {{ Request::is('testimoni') ? 'nav-active' : '' }}">
-                        <a class="nav-link mx-2 {{ Request::is('testimoni') ? 'nav-active-color' : '' }}"
+                        <a class="nav-link mx-1 {{ Request::is('testimoni') ? 'nav-active-color' : '' }}"
                             href="/testimoni">Testimoni</a>
                     </li>
                     <li class="nav-item {{ Request::is('contact') ? 'nav-active' : '' }}">
-                        <a class="nav-link mx-2 {{ Request::is('contact') ? 'nav-active-color' : '' }}"
+                        <a class="nav-link mx-1 {{ Request::is('contact') ? 'nav-active-color' : '' }}"
                             href="/contact">Kontak</a>
                     </li>
                     <li class="nav-item {{ Request::is('about') ? 'nav-active' : '' }}">
-                        <a class="nav-link mx-2 {{ Request::is('about') ? 'nav-active-color' : '' }}"
+                        <a class="nav-link mx-1 {{ Request::is('about') ? 'nav-active-color' : '' }}"
                             href="/about">Tentang Kami</a>
                     </li>
                 </ul>

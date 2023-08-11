@@ -113,29 +113,26 @@
             <div id="carousel-related-product">
                 @foreach ($kategori as $kategori)
                     <div class="p-2 pb-3">
-                        <div class="product-wap card rounded-0">
-                            <div class="card rounded-0">
-                                <img class="card-img rounded-0 img-fluid card-menu-lainnya"
-                                    src="{{ asset('storage/' . $kategori->gambar) }}">
+                        <div class="product-wap card rounded-4">
+                            <div class="card">
+                                <img class="card-img img-fluid card-menu-lainnya"
+                                    src="{{ asset('storage/' . $kategori->gambar) }}" class="img-fluid">
                                 <div
-                                    class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
+                                    class="card-img-overlay product-overlay d-flex align-items-center justify-content-center">
                                     <ul class="list-unstyled">
-                                        <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i
-                                                    class="far fa-eye"></i></a></li>
-                                        <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i
-                                                    class="fas fa-cart-plus"></i></a></li>
+                                        <li><a class="btn btn-success text-white mt-2"
+                                                href="/kategori/{{ $kategori->id }}"><i class="far fa-eye"></i></a></li>
                                     </ul>
                                 </div>
                             </div>
                             <div class="card-body">
-                                <a href="shop-single.html" class="h3 text-decoration-none">{{ $kategori->nama }}</a>
+                                <a href="/kategori/{{ $kategori->id }}"
+                                    class="fw-semibold text-decoration-none">{{ $kategori->nama }}</a>
                                 <p class="mt-2">Rp {{ number_format($menu->harga, 0, ',', '.') }}</p>
                             </div>
                         </div>
                     </div>
                 @endforeach
-
-
             </div>
 
 

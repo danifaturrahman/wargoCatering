@@ -41,7 +41,7 @@
                                 </script>
 
                                 @forelse ($cart as $menu)
-                                    <div class="row gy-3 mb-4">
+                                    <div class="row gy-3 mb-3">
                                         <div class="col-lg-5">
                                             <div class="me-lg-5">
                                                 <div class="d-flex">
@@ -86,8 +86,10 @@
                                         $totalHarga += $menu->menu->harga * $menu->jumlah;
                                     @endphp
                                 @empty
-                                    <div class="alert alert-info">
-                                        Keranjang belanja Anda kosong. Silakan tambahkan menu ke keranjang.
+                                    <div class="text-center">
+                                        <img src="/assets/img/empty-cart.png" style="width: 500px; height: 400px;"
+                                            alt="">
+                                        <p class="fs-24 fw-bold">"Keranjang belanja Anda masih kosong."</p>
                                     </div>
                                 @endforelse
                             </div>

@@ -27,15 +27,11 @@
             <div class="col-lg-12">
                 <!-- Start Categories of The Month -->
                 <section id="carousel-kategori" class="container">
-                    <div class="row text-center pt-3">
-                        <div class="row text-center py-3">
-                            <div class="col-lg-6 m-auto">
-                                <p class="text-orange fw-bold fs-20 m-0">KATEGORI</p>
-                                <p class="fs-28 text-default fw-semibold">
-                                    Ketegori katering dari Wargo Catering
-                                </p>
-                            </div>
-                        </div>
+                    <div class="row pt-4 pb-2 text-center">
+                        <p class="text-orange fw-bold fs-20 m-0">Kategori Katering</p>
+                        <p class="fs-28 fw-bold title-section">
+                            Kategori menu katering dari Wargo Catering.
+                        </p>
                     </div>
                     <div class="row text-center">
                         @foreach ($kategori as $kategori)
@@ -76,15 +72,14 @@
     <!-- Start Menu Terlaris -->
     <section class="bg-light">
         <div class="container py-5">
-            <div class="row text-center">
-                <div class="col-lg-6 m-auto">
-                    <p class="text-orange fw-bold fs-20 m-0">MENU TERLARIS</p>
-                    <p class="fs-28 text-default fw-semibold">
-                        Menu terlaris dari Wargo Catering
-                    </p>
-                </div>
+            <div class="row pt-3 pb-2 text-center">
+                <p class="text-orange fw-bold fs-20 m-0">Menu Terlaris</p>
+                <p class="fs-28 fw-bold title-section">
+                    Menu terlaris dari Wargo Catering.
+                </p>
             </div>
-            <div class="row">
+
+            <div class="row justify-content-center">
                 <div class="col-lg-4 col-md-12 mb-4">
                     <div class="card">
                         <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
@@ -155,6 +150,8 @@
                 </div>
 
             </div>
+
+        </div>
 
     </section>
     <!-- End Menu Terlaris -->
@@ -162,15 +159,14 @@
     <!-- Start Menu Terbaru -->
     <section>
         <div class="container py-5">
-            <div class="row text-center">
-                <div class="col-lg-6 m-auto">
-                    <p class="text-orange fw-bold fs-20 m-0">MENU TERBARU</p>
-                    <p class="fs-28 text-default fw-semibold">
-                        Menu terbaru dari Wargo Catering
-                    </p>
-                </div>
+            <div class="row pt-3 pb-2 text-center">
+                <p class="text-orange fw-bold fs-20 m-0">Menu Terbaru</p>
+                <p class="fs-28 fw-bold title-section">
+                    Menu terbaru dari Wargo Catering.
+                </p>
             </div>
-            <div class="row">
+
+            <div class="row justify-content-center">
                 <div class="col-lg-4 col-md-12 mb-4">
                     <div class="card">
                         <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
