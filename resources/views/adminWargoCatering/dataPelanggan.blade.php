@@ -18,11 +18,14 @@
                 </li>
             </ul>
         </div>
-        {{-- @if (session()->has('success'))
+        @if (session()->has('success'))
             <div class="alert alert-success" role="alert">
                 {{ session('success') }}
             </div>
-        @endif --}}
+        @endif
+        @php
+            $id = 1;
+        @endphp
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
@@ -41,9 +44,14 @@
                                 <tbody>
                                     @foreach ($pelanggan as $pelanggan)
                                         <tr class="text-center">
-                                            <td>{{ $pelanggan->id }}</td>
+                                            <td>{{ $id++ }}</td>
                                             <td>{{ $pelanggan->name }}</td>
-                                            <td>{{ $pelanggan->telepon }}</td>
+                                            <td>
+                                                @empty($pelanggan->telepon)
+                                                    Nomor telepon kosong.
+                                                @endempty
+                                                {{ $pelanggan->telepon }}
+                                            </td>
                                             <td>{{ $pelanggan->email }}</td>
                                             <td>
                                                 <a href="" class="btn btn-primary btn-sm fs-16">Detail</a>

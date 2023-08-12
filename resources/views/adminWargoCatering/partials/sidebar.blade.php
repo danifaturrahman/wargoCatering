@@ -41,42 +41,49 @@
                     <h4 class="text-section">Pages</h4>
                 </li>
 
-                <li class="nav-item {{ Request::is('dashboard/kategori-katering') ? 'active' : '' }}">
+                <li class="nav-item {{ Request::is('dashboard/kategori-katering*') ? 'active' : '' }}">
                     <a href="/dashboard/kategori-katering">
                         <i class="fas fa-list-ul"></i>
                         <p>Kategori Katering</p>
                     </a>
                 </li>
 
-                <li class="nav-item {{ Request::is('dashboard/menu-katering') ? 'active' : '' }}">
+                <li class="nav-item {{ Request::is('dashboard/menu-katering*') ? 'active' : '' }}">
                     <a href="/dashboard/menu-katering">
                         <i class="fas fa-clipboard-list"></i>
                         <p>Menu Katering</p>
                     </a>
                 </li>
 
-                <li class="nav-item {{ Request::is('dashboard/alat-katering') ? 'active' : '' }}">
+                <li class="nav-item {{ Request::is('dashboard/ongkos-kirim*') ? 'active' : '' }}">
+                    <a href="/dashboard/ongkos-kirim">
+                        <i class="fas fa-car"></i>
+                        <p>Ongkos Kirim</p>
+                    </a>
+                </li>
+
+                <li class="nav-item {{ Request::is('dashboard/alat-katering*') ? 'active' : '' }}">
                     <a href="/dashboard/alat-katering">
                         <i class="fas fa-utensils"></i>
                         <p>Alat Katering</p>
                     </a>
                 </li>
 
-                <li class="nav-item {{ Request::is('dashboard/pesanan-pelanggan') ? 'active' : '' }}">
+                <li class="nav-item {{ Request::is('dashboard/pesanan-pelanggan*') ? 'active' : '' }}">
                     <a href="/dashboard/pesanan-pelanggan">
                         <i class="fas fa-box-open"></i>
                         <p>Pesanan Pelanggan</p>
                     </a>
                 </li>
 
-                <li class="nav-item {{ Request::is('dashboard/data-pelanggan') ? 'active' : '' }}">
+                <li class="nav-item {{ Request::is('dashboard/data-pelanggan*') ? 'active' : '' }}">
                     <a href="/dashboard/data-pelanggan">
                         <i class="fas fa-address-book"></i>
                         <p>Data Pelanggan</p>
                     </a>
                 </li>
 
-                <li class="nav-item {{ Request::is('dashboard/laporan-transaksi') ? 'active' : '' }}">
+                <li class="nav-item {{ Request::is('dashboard/laporan-transaksi*') ? 'active' : '' }}">
                     <a href="/dashboard/laporan-transaksi">
                         <i class="fas fa-book"></i>
                         <p>Laporan Transaksi</p>

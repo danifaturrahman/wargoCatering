@@ -6,6 +6,7 @@ use App\Models\Cart;
 use App\Models\DetailPesanan;
 use App\Models\Kategori;
 use App\Models\Menu;
+use App\Models\OngkosKirim;
 use App\Models\Pesanan;
 use Carbon\Carbon;
 use Carbon\CarbonInterface;
@@ -80,12 +81,15 @@ class wargoCateringController extends Controller
             $user = Auth::user();
             $cart = $user->cart;
 
+            $ongkir = OngkosKirim::all();
+
             if ($cart->isEmpty()) {
                 return redirect()->back()->with('gagal', 'Keranjang belanja Anda kosong. Silakan tambahkan menu ke keranjang.');
             }
 
             return view('wargoCatering.checkout', [
-                'cart' => $cart
+                'cart' => $cart,
+                'ongkir' => $ongkir
             ]);
         } else {
             return redirect('/login')->with('error', 'Silahkan melakukan login terlebih dahulu');

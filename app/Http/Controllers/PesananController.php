@@ -114,6 +114,7 @@ class PesananController extends Controller
 
     public function checkoutPesanan(Request $request)
     {
+        dd($request);
         // Validasi input dari halaman checkout jika diperlukan
         $request->validate([
             'alamat' => 'required|string',

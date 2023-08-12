@@ -18,11 +18,14 @@
                 </li>
             </ul>
         </div>
-        {{-- @if (session()->has('success'))
+        @if (session()->has('success'))
             <div class="alert alert-success" role="alert">
                 {{ session('success') }}
             </div>
-        @endif --}}
+        @endif
+        @php
+            $id = 1;
+        @endphp
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
@@ -46,24 +49,23 @@
                                 <tbody>
                                     @foreach ($menu as $menu)
                                         <tr class="text-center">
-                                            <td>{{ $menu->id }}</td>
+                                            <td>{{ $id++ }}</td>
                                             <td>{{ $menu->nama }}</td>
                                             <td><img src="{{ asset('storage/' . $menu->gambar) }}"
                                                     style="height: 80px; width: 80px; object-fit: cover"></td>
                                             <td>{{ $menu->kategori->nama }}</td>
                                             <td>Rp {{ number_format($menu->harga, 0, ',', '.') }}</td>
-                                            <td class="row d-flex align-items-center">
-                                                <a href="/dashboard/keunggulan/1" class="mx-auto" style="color: blue;"><i
-                                                        class="fas fa-eye"></i></a>
-                                                <a href="/dashboard/keunggulan/1/edit" class="mx-auto"
-                                                    style="color: blue"><i class="fas fa-edit"></i></a>
-                                                <form class="mx-auto" action="/dashboard/keunggulan/1" method="POST"
+                                            <td class="row justify-content-center align-items-center">
+                                                <a href="/dashboard/menu-katering/{{ $menu->id }}"
+                                                    class=" btn btn-primary">Detail</a>
+                                                <a href="/dashboard/menu-katering/{{ $menu->id }}/edit"
+                                                    class=" btn btn-warning mx-2">Update</a>
+                                                <form action="/dashboard/menu-katering/{{ $menu->id }}" method="POST"
                                                     class="pr-2">
                                                     @csrf
                                                     @method('delete')
-                                                    <button class="p-0 border-0 btn" style="color: blue;" type="submit"
-                                                        onclick="return confirm('Apakah anda yakin?')"><i
-                                                            class="fas fa-times"></i></button>
+                                                    <button class="btn btn-danger" type="submit"
+                                                        onclick="return confirm('Apakah anda yakin ingin menghapusnya?')">Hapus</button>
                                                 </form>
                                             </td>
                                         </tr>

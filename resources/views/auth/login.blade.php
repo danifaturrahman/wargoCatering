@@ -41,11 +41,6 @@
                             is-invalid
                         @enderror form-control-lg"
                             placeholder="Enter a valid email address" />
-                        @error('email')
-                            <div class="invalid-feedback">
-                                *{{ $message }}
-                            </div>
-                        @enderror
                         <label class="form-label" for="form3Example3">Email address</label>
                     </div>
 
@@ -56,11 +51,6 @@
                         is-invalid
                     @enderror form-control-lg"
                             placeholder="Enter password" />
-                        @error('password')
-                            <div class="invalid-feedback">
-                                *{{ $message }}
-                            </div>
-                        @enderror
                         <label class="form-label" for="form3Example4">Password</label>
                     </div>
 

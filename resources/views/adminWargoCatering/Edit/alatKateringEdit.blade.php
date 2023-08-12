@@ -11,43 +11,37 @@
         <hr>
         <div class="fs-2 mb-5 mt-3 ">
             <p class="fs-16 fw-bold text-center">
-                Tambah Kategori Katering Baru
+                Tambah Alat Katering Baru
             </p>
         </div>
-        <form action="/dashboard/kategori-katering" method="POST" enctype="multipart/form-data">
+        <form action="/dashboard/alat-katering/{{ $alat->id }}" method="POST" enctype="multipart/form-data">
+            @method('put')
             @csrf
             <div class="mb-3">
-                <label for="nama" class="form-label fw-semibold">Nama</label>
+                <label for="nama" class="form-label">Nama</label>
                 <input type="text"
-                    class="form-control 
+                    class="form-control w-50 
                 @error('nama')
                     is-invalid
                 @enderror"
-                    id="nama" name="nama" autofocus value="{{ old('nama') }}">
+                    id="nama" name="nama" autofocus value="{{ old('nama', $alat->nama) }}">
                 @error('nama')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>
                 @enderror
             </div>
-
-            <div class="mb-4">
-                <label for="inputdeskripsi" class="form-label fw-semibold">Deskripsi</label>
-                <textarea class="form-control @error('deskripsi')
-                is-invalid
-            @enderror mt-1" id="deskripsi"
-                    name="deskripsi" placeholder="Deskripsi" rows="4">{{ old('deskripsi') }}</textarea>
-                @error('deskripsi')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                @enderror
-            </div>
-
             <div class="mb-5">
-                <label for="gambar" class="form-label fw-semibold">
+                <label for="gambar" class="form-label">
                     Gambar</label>
                 <img class="img-preview img-fluid m-3" style="max-width: 150px; max-height: 150px; object-fit: cover">
+                <input type="hidden" name="oldGambar" value="{{ $alat->gambar }}">
+                @if ($alat->gambar)
+                    <img src="{{ asset('storage/' . $alat->gambar) }}" class="img-preview img-fluid m-3"
+                        style="max-width: 150px; max-height: 150px; object-fit: cover">
+                @else
+                    <img class="img-preview img-fluid m-3" style="max-width: 150px; max-height: 150px; object-fit: cover">
+                @endif
                 <input
                     class="form-control w-50 
                     @error('gambar')

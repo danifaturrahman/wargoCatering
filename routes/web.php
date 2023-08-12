@@ -57,6 +57,7 @@ Route::group(['middleware' => ['auth', 'Admin']], function () {
     Route::get('/dashboard/kategori-katering', [AdminWargoCateringController::class, 'kategoriKatering']);
     Route::get('/dashboard/menu-katering', [AdminWargoCateringController::class, 'menuKatering']);
     Route::get('/dashboard/alat-katering', [AdminWargoCateringController::class, 'alatKatering']);
+    Route::get('/dashboard/ongkos-kirim', [AdminWargoCateringController::class, 'ongkosKirim']);
     Route::get('/dashboard/pesanan-pelanggan', [AdminWargoCateringController::class, 'pesananPelanggan']);
     Route::get('/dashboard/data-pelanggan', [AdminWargoCateringController::class, 'dataPelanggan']);
     Route::get('/dashboard/laporan-transaksi', [AdminWargoCateringController::class, 'laporanTransaksi']);
@@ -64,20 +65,52 @@ Route::group(['middleware' => ['auth', 'Admin']], function () {
 
     /* Create View */
 
-    Route::get('/dashboard/kategori-katering/create', [AdminWargoCateringController::class, 'kategoriKateringCreate']);
-    Route::get('/dashboard/menu-katering/create', [AdminWargoCateringController::class, 'menuKateringCreate']);
-    Route::get('/dashboard/alat-katering/create', [AdminWargoCateringController::class, 'alatKateringCreate']);
-    Route::get('/dashboard/pesanan-pelanggan/create', [AdminWargoCateringController::class, 'pesananPelangganCreate']);
-    Route::get('/dashboard/data-pelanggan/create', [AdminWargoCateringController::class, 'dataPelangganCreate']);
-    Route::get('/dashboard/laporan-transaksi/create', [AdminWargoCateringController::class, 'laporanTransaksiCreate']);
+    Route::get('/dashboard/kategori-katering/create', [AdminWargoCateringController::class, 'createKategoriKatering']);
+    Route::get('/dashboard/menu-katering/create', [AdminWargoCateringController::class, 'createMenuKatering']);
+    Route::get('/dashboard/alat-katering/create', [AdminWargoCateringController::class, 'createAlatKatering']);
+    Route::get('/dashboard/ongkos-kirim/create', [AdminWargoCateringController::class, 'createOngkosKirim']);
+    Route::get('/dashboard/pesanan-pelanggan/create', [AdminWargoCateringController::class, 'createPesananPelanggan']);
+    Route::get('/dashboard/data-pelanggan/create', [AdminWargoCateringController::class, 'createDataPelanggan']);
+    Route::get('/dashboard/laporan-transaksi/create', [AdminWargoCateringController::class, 'createLaporanTransaksi']);
 
-    /* Form Post */
+    /* Form Post Store */
 
     Route::post('/dashboard/kategori-katering', [AdminWargoCateringController::class, 'storeKategoriKatering']);
     Route::post('/dashboard/menu-katering', [AdminWargoCateringController::class, 'storeMenuKatering']);
     Route::post('/dashboard/alat-katering', [AdminWargoCateringController::class, 'storeAlatKatering']);
+    Route::post('/dashboard/ongkos-kirim', [AdminWargoCateringController::class, 'storeOngkosKirim']);
     Route::post('/dashboard/pesanan-pelanggan', [AdminWargoCateringController::class, 'storePesananPelanggan']);
     Route::post('/dashboard/data-pelanggan', [AdminWargoCateringController::class, 'storeDataPelanggan']);
+
+    /* Edit View */
+
+    Route::get('/dashboard/kategori-katering/{id}/edit', [AdminWargoCateringController::class, 'editKategoriKatering']);
+    Route::get('/dashboard/menu-katering/{id}/edit', [AdminWargoCateringController::class, 'editMenuKatering']);
+    Route::get('/dashboard/alat-katering/{id}/edit', [AdminWargoCateringController::class, 'editAlatKatering']);
+    Route::get('/dashboard/ongkos-kirim/{id}/edit', [AdminWargoCateringController::class, 'editOngkosKirim']);
+    Route::get('/dashboard/pesanan-pelanggan/{id}/edit', [AdminWargoCateringController::class, 'editPesananPelanggan']);
+    Route::get('/dashboard/data-pelanggan/{id}/edit', [AdminWargoCateringController::class, 'editDataPelanggan']);
+    Route::get('/dashboard/laporan-transaksi/{id}/edit', [AdminWargoCateringController::class, 'editLaporanTransaksi']);
+
+    /* Form Put Update */
+
+    Route::put('/dashboard/kategori-katering/{id}', [AdminWargoCateringController::class, 'updateKategoriKatering']);
+    Route::put('/dashboard/menu-katering/{id}', [AdminWargoCateringController::class, 'updateMenuKatering']);
+    Route::put('/dashboard/alat-katering/{id}', [AdminWargoCateringController::class, 'updateAlatKatering']);
+    Route::put('/dashboard/ongkos-kirim/{id}', [AdminWargoCateringController::class, 'updateOngkosKirim']);
+    Route::put('/dashboard/pesanan-pelanggan/{id}', [AdminWargoCateringController::class, 'updatePesananPelanggan']);
+    Route::put('/dashboard/data-pelanggan/{id}', [AdminWargoCateringController::class, 'updateDataPelanggan']);
+    Route::put('/dashboard/laporan-transaksi/{id}', [AdminWargoCateringController::class, 'updateLaporanTransaksi']);
+
+    /* Form Delete */
+
+    Route::delete('/dashboard/kategori-katering/{id}', [AdminWargoCateringController::class, 'destroyKategoriKatering']);
+    Route::delete('/dashboard/menu-katering/{id}', [AdminWargoCateringController::class, 'destroyMenuKatering']);
+    Route::delete('/dashboard/alat-katering/{id}', [AdminWargoCateringController::class, 'destroyAlatKatering']);
+    Route::delete('/dashboard/ongkos-kirim/{id}', [AdminWargoCateringController::class, 'destroyOngkosKirim']);
+    Route::delete('/dashboard/pesanan-pelanggan/{id}', [AdminWargoCateringController::class, 'destroyPesananPelanggan']);
+    Route::delete('/dashboard/data-pelanggan/{id}', [AdminWargoCateringController::class, 'destroyDataPelanggan']);
+    Route::delete('/dashboard/laporan-transaksi/{id}', [AdminWargoCateringController::class, 'destroyLaporanTransaksi']);
 });
 
 
