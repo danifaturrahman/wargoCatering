@@ -5,11 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Alat;
+use App\Models\DetailPeminjamanAlat;
 use App\Models\Kategori;
 use App\Models\Menu;
 use App\Models\OngkosKirim;
+use App\Models\PeminjamanAlat;
 use App\Models\Pesanan;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class AdminWargoCateringController extends Controller
@@ -101,6 +104,11 @@ class AdminWargoCateringController extends Controller
         return view('adminWargoCatering.menuKatering', [
             'menu' => $menu
         ]);
+    }
+
+    public function showMenuKatering()
+    {
+        return view('adminWargoCatering.Show.menuKateringShow');
     }
 
     public function createMenuKatering()
@@ -330,8 +338,93 @@ class AdminWargoCateringController extends Controller
 
     // LAPORAN TRANSAKSI
 
-    public function laporanTransaksi()
+    public function laporanTransaksi(Request $request)
     {
-        return view('adminWargoCatering.laporanTransaksi');
+        $startDate = $request->input('start_date', now()->subMonth()->format('Y-m-d'));
+        $endDate = $request->input('end_date', now()->format('Y-m-d'));
+
+        $laporan = Pesanan::where('status_pesanan', 'Lunas')
+            ->whereBetween('tanggal_pesanan_dibuat', [$startDate, $endDate])
+            ->get();
+
+        return view('adminWargoCatering.laporanTransaksi', [
+            'laporan' => $laporan,
+            'startDate' => $startDate,
+            'endDate' => $endDate
+        ]);
+    }
+
+    // PEMINJAMAN ALAT
+
+    public function peminjamanAlat()
+    {
+        $peminjamanAlat = PeminjamanAlat::all();
+
+        return view('adminWargoCatering.peminjamanAlat', [
+            'peminjamanAlat' => $peminjamanAlat
+        ]);
+    }
+
+    public function showPeminjamanAlat($pesanan_id)
+    {
+        $peminjaman = PeminjamanAlat::findOrFail($pesanan_id);
+
+        return view('adminWargoCatering.Show.peminjamanAlatShow', [
+            'peminjaman' => $peminjaman
+        ]);
+    }
+
+    public function createPeminjamanAlat()
+    {
+        $alat = Alat::all();
+        $pesanan = Pesanan::all();
+
+        return view('adminWargoCatering.Create.peminjamanAlatCreate', [
+            'alat' => $alat,
+            'pesanan' => $pesanan
+        ]);
+    }
+
+    public function storePeminjamanAlat(Request $request)
+    {
+        $request->validate([
+            'pesanan_id' => 'required',
+            'alat.*' => 'integer|min:1',
+        ]);
+
+        // Simpan data ke dalam tabel peminjaman_alat
+        $peminjaman = PeminjamanAlat::create([
+            'pesanan_id' => $request->input('pesanan_id'),
+        ]);
+
+        // Simpan data peminjaman alat ke dalam tabel detail_peminjaman_alat
+        foreach ($request->input('alat') as $alatId => $jumlah) {
+            if ($jumlah > 0) {
+                $alat = Alat::findOrFail($alatId);
+                DetailPeminjamanAlat::create([
+                    'peminjaman_alat_id' => $peminjaman->id,
+                    'nama_alat' => $alat->nama,
+                    'jumlah' => $jumlah,
+                ]);
+            }
+        }
+
+        return redirect('dashboard/peminjaman-alat')->with('success', 'Peminjaman alat berhasil ditambahkan');
+    }
+
+    public function updatePeminjamanAlat(Request $request, $id)
+    {
+        $validatedData = $request->validate([
+            'status' => 'required',
+            'catatan' => '',
+        ]);
+
+        PeminjamanAlat::where('id', $id)
+            ->update([
+                'status' => $validatedData['status'],
+                'catatan' => $validatedData['catatan'],
+            ]);
+
+        return redirect()->back()->with('success', 'Status pengembalian berhasil diubah');
     }
 }

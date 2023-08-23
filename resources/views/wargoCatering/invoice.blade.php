@@ -33,7 +33,7 @@
                             <p class="text-muted fw-bold">Invoice</p>
                             <ul class="list-unstyled">
                                 <li class="text-muted mb-2"><i class="fas fa-circle" style="color:#C15E28 ;"></i> <span
-                                        class="fw-medium fs-18">No. Pesanan: </span>{{ $pesanan->id }}</li>
+                                        class="fw-medium fs-18">No. Pesanan: </span>{{ $pesanan->nomor_pesanan }}</li>
                                 <li class="text-muted mb-2"><i class="fas fa-circle" style="color:#C15E28 ;"></i> <span
                                         class="fw-medium fs-18">Tgl. Transaksi:
                                     </span>{{ $tanggal_transaksi }}

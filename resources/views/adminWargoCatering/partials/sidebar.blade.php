@@ -69,6 +69,13 @@
                     </a>
                 </li>
 
+                <li class="nav-item {{ Request::is('dashboard/peminjaman-alat*') ? 'active' : '' }}">
+                    <a href="/dashboard/peminjaman-alat">
+                        <i class="fas fa-hand-holding"></i>
+                        <p>Peminjaman Alat</p>
+                    </a>
+                </li>
+
                 <li class="nav-item {{ Request::is('dashboard/pesanan-pelanggan*') ? 'active' : '' }}">
                     <a href="/dashboard/pesanan-pelanggan">
                         <i class="fas fa-box-open"></i>

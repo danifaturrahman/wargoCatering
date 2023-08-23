@@ -39,11 +39,15 @@
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
+                                @php
+                                    $i = 1;
+                                @endphp
                                 <tbody>
                                     @foreach ($pesanan as $pesanan)
                                         <tr class="text-center">
-                                            <td>{{ $pesanan->id }}</td>
-                                            <td>{{ $pesanan->tanggal_pesanan_dibuat }}</td>
+                                            <td>{{ $i++ }}</td>
+                                            <td>{{ \Carbon\Carbon::parse($pesanan->tanggal_pesanan_dibuat)->isoFormat('dddd, DD MMMM YYYY') }}
+                                            </td>
                                             <td>{{ $pesanan->user->name }}</td>
                                             <td>{{ $pesanan->status_pesanan }}</td>
                                             <td>Rp

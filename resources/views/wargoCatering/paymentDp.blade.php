@@ -15,12 +15,12 @@
                     <p class="py-3 fs-24 fw-bold text-orange">HALAMAN PEMBAYARAN</p>
                     <hr>
                 </div>
-                @foreach ($pesanan->detail_pesanan as $detail_pesanan)
-                    <div class="row my-2 mx-1 justify-content-center">
-                        <p class="fs-20 fw-semibold text-center">PESANAN ANDA</p>
+                <div class="row my-2 mx-1 justify-content-center">
+                    <p class="fs-20 fw-semibold text-center">PESANAN ANDA</p>
+                    @foreach ($pesanan->detail_pesanan as $detail_pesanan)
                         <div class="col-md-2 mb-4 mb-md-0">
                             <div class="text-center">
-                                <img src="{{ asset('storage/' . $detail_pesanan->menu->gambar) }}" class="rounded-3"
+                                <img src="{{ asset('storage/' . $detail_pesanan->menu->gambar) }}" class="rounded-3 mb-3"
                                     style="width: 110px; height: 100px; object-fit: cover;"
                                     alt="{{ $detail_pesanan->menu->nama }}" />
                                 <a href="#!">
@@ -44,8 +44,8 @@
                                         {{ number_format($detail_pesanan->harga, 0, ',', '.') }}</span> </span>
                             </div>
                         </div>
-                    </div>
-                @endforeach
+                    @endforeach
+                </div>
                 <hr>
                 <div class="col-xl-12 text-center py-3">
                     <ul class="list-unstyled">

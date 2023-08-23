@@ -1,0 +1,37 @@
+@media print {
+    /* Pertahankan ukuran font dan gaya Bootstrap */
+    body * {
+        font-size: inherit !important;
+        font-family: inherit !important;
+    }
+
+
+    /* Atur tata letak halaman */
+    body {
+        width: 100%;
+        padding: 7%;
+        background-color: white;
+    }
+
+    /* Atur tata letak kolom "Peminjam" dan "Ringkasan Peminjaman" */
+    .col-xl-7 {
+        width: 60%;
+        float: left;
+        box-sizing: border-box;
+    }
+
+    .col-xl-5 {
+        width: 40%;
+        float: left;
+        box-sizing: border-box;
+    }
+
+    /* Bersihkan floating setelah kolom */
+    .clearfix::after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    /* ... tambahkan gaya cetak lainnya sesuai kebutuhan ... */
+}

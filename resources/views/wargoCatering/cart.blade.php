@@ -50,7 +50,8 @@
                                                         style="width: 96px; height: 96px; object-fit: cover" />
                                                     <div class="">
                                                         <a href="#" class="nav-link">{{ $menu->menu->nama }}</a>
-                                                        <p class="text-muted">{{ $menu->menu->kategori->nama }}</p>
+                                                        <p class="text-muted">
+                                                            {{ $menu->menu->kategori->nama }}</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -59,16 +60,18 @@
                                             class="col-lg-2 col-sm-6 col-6 d-flex flex-row flex-lg-column flex-xl-row text-nowrap">
                                             <div class="">
                                                 <input type="number" style="width: 100px;" class="form-control me-4"
-                                                    name="jumlah[{{ $menu->id }}]" min="15"
+                                                    name="jumlah[{{ $menu->id }}]" min="1"
                                                     value="{{ $menu->jumlah }}" data-harga="{{ $menu->menu->harga }}"
-                                                    oninput="updateTotalHarga(this)">
+                                                    oninput="updateTotalHarga(this)"
+                                                    data-kategori="{{ $menu->menu->kategori->nama }}">
                                             </div>
                                             <div class="">
                                                 <text class="h6">Rp
                                                     {{ number_format($menu->menu->harga * $menu->jumlah, 0, ',', '.') }}</text>
                                                 <br />
                                                 <small class="text-muted text-nowrap"> Rp
-                                                    {{ number_format($menu->menu->harga, 0, ',', '.') }} / per item </small>
+                                                    {{ number_format($menu->menu->harga, 0, ',', '.') }} / per item
+                                                </small>
                                             </div>
                                         </div>
                                         <div
@@ -123,6 +126,15 @@
 
     <script>
         function updateTotalHarga(inputElement) {
+            const kategoriMenu = inputElement.getAttribute("data-kategori");
+            const inputValue = parseInt(inputElement.value);
+
+            if (kategoriMenu === "Satuan") {
+                inputElement.value = Math.max(inputValue, 1);
+            } else {
+                inputElement.value = Math.max(inputValue, 15);
+            }
+
             var totalHarga = 0;
 
             // Ambil semua input element dengan name="jumlah"

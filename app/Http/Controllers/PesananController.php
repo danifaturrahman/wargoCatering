@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Cart;
 use App\Models\DetailPesanan;
 use App\Models\Pesanan;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -114,12 +113,11 @@ class PesananController extends Controller
 
     public function checkoutPesanan(Request $request)
     {
-        dd($request);
         // Validasi input dari halaman checkout jika diperlukan
         $request->validate([
+            'telepon' => 'required',
             'alamat' => 'required|string',
             'keterangan' => 'required|string',
-            // 'ongkos_kirim' => 'required|string',
             'tanggal' => 'required|date',
             'jam' => 'required|date_format:H:i',
         ]);
@@ -144,17 +142,16 @@ class PesananController extends Controller
         }
 
         // Hitung total harga pesanan termasuk ongkos kirim (jika diperlukan)
-        $ongkir = 60000; // Misalnya ongkos kirim tetap Rp 60,000
-        $totalHargaPesanan = $totalHarga + $ongkir;
+        $totalHargaPesanan = $totalHarga + $request->input('ongkos_kirim');
 
         // Buat pesanan baru di tabel "pesanans"
         $pesanan = new Pesanan();
         $pesanan->user_id = $user_id;
-        $pesanan->nomor_pesanan = "DP-" . time() . "-" . bin2hex(random_bytes(4));
+        $pesanan->nomor_pesanan = "#" . $user_id . "-" . strtoupper(bin2hex(random_bytes(2)));
+        $pesanan->midtrans_id = "DP-" . time() . "-" . bin2hex(random_bytes(4));
         $pesanan->alamat_pengiriman = $request->input('alamat');
         $pesanan->keterangan_pengiriman = $request->input('keterangan');
-        $pesanan->harga_pengiriman = $ongkir;
-        $pesanan->status_pengiriman = 'Belum Dikirim';
+        $pesanan->harga_pengiriman = $request->input('ongkos_kirim');
         $pesanan->total_harga = $totalHargaPesanan;
         $pesanan->status_pesanan = 'Belum Dibayar';
         $pesanan->tanggal_pesanan_dibuat = now(); // Tanggal pesanan dibuat saat ini
@@ -199,11 +196,11 @@ class PesananController extends Controller
         // Set 3DS transaction for credit card to true
         \Midtrans\Config::$is3ds = true;
 
-        $harga_dp = $pesanan->total_harga / 2;
+        $harga_dp = round($pesanan->total_harga / 2);
 
         $params = array(
             'transaction_details' => array(
-                'order_id' => $pesanan->nomor_pesanan,
+                'order_id' => $pesanan->midtrans_id,
                 'gross_amount' => $harga_dp,
             ),
             'customer_details' => array(
@@ -212,6 +209,7 @@ class PesananController extends Controller
                 'phone' => $user->telepon,
             ),
         );
+
 
         $snapToken = \Midtrans\Snap::getSnapToken($params);
 
@@ -242,11 +240,11 @@ class PesananController extends Controller
         // Set 3DS transaction for credit card to true
         \Midtrans\Config::$is3ds = true;
 
-        $hargaPelunasan = $pesanan->total_harga / 2;
+        $hargaPelunasan = round($pesanan->total_harga / 2);
 
         $params = array(
             'transaction_details' => array(
-                'order_id' => $pesanan->nomor_pesanan,
+                'order_id' => $pesanan->midtrans_id,
                 'gross_amount' => $hargaPelunasan,
             ),
             'customer_details' => array(
@@ -275,12 +273,12 @@ class PesananController extends Controller
         $hashed = hash("sha512", $request->order_id . $request->status_code . $request->gross_amount . $serverKey);
         if ($hashed == $request->signature_key) {
             $midtransOrderID = $request->order_id;
-            $pesanan = Pesanan::where('nomor_pesanan', $midtransOrderID)->first();
+            $pesanan = Pesanan::where('midtrans_id', $midtransOrderID)->first();
 
             if ($pesanan->status_pesanan == 'Belum Dibayar') {
                 $pesanan->update(['status_pesanan' => 'Menunggu Pelunasan']);
-                $nomorPesanan = "PELUNASAN-" . time() . "-" . bin2hex(random_bytes(4));
-                $pesanan->update(['nomor_pesanan' => $nomorPesanan]);
+                $midtransId = "PELUNASAN-" . time() . "-" . bin2hex(random_bytes(4));
+                $pesanan->update(['midtrans_id' => $midtransId]);
             } else {
                 $pesanan->update(['status_pesanan' => 'Lunas']);
             }

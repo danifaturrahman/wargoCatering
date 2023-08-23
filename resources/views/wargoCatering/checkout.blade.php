@@ -7,7 +7,7 @@
             <form action="/checkout-pesanan" method="POST">
                 @csrf
                 <div class="row">
-                    <div class="col-7 ">
+                    <div class="col-12 col-lg-7 mb-3">
                         <div class="p-3 border border-secondary-subtle rounded-3 bg-white">
                             <!-- Loop through the cart items -->
                             @foreach ($cart as $menu)
@@ -38,51 +38,107 @@
                                 </div>
                                 <div class="form-group col-md-6 mb-4">
                                     <label for="inputtelepon" class="fw-semibold">Telepon</label>
-                                    <input type="text" value="{{ Auth::user()->telepon }}" class="form-control mt-1"
+                                    <input type="text" value="{{ Auth::user()->telepon }}"
+                                        class="form-control mt-1 @error('telepon')
+                                    is-invalid
+                                @enderror"
                                         id="telepon" name="telepon" placeholder="Telepon">
+                                    @error('telepon')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
                             </div>
+
                             <div class="mb-4">
                                 <label for="inputalamat" class="fw-semibold">Alamat</label>
-                                <textarea class="form-control mt-1" id="alamat" name="alamat" placeholder="Alamat" rows="4">{{ Auth::user()->alamat }}</textarea>
+                                <textarea
+                                    class="form-control mt-1 @error('alamat')
+                                is-invalid
+                            @enderror"
+                                    id="alamat" name="alamat" placeholder="Alamat" rows="4">{{ Auth::user()->alamat }}</textarea>
+                                @error('alamat')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
+
                             <div class="row">
                                 <div class="form-group mb-4 col-6">
                                     <label for="keterangan" class="fw-semibold">Keterangan</label>
-                                    <select name="keterangan" class="form-control" id="keterangan">
+                                    <select name="keterangan"
+                                        class="form-control @error('keterangan')
+                                    is-invalid
+                                @enderror"
+                                        id="keterangan">
                                         <option value="Diambil">Diambil</option>
                                         <option value="Diantar">Diantar</option>
                                     </select>
+                                    @error('keterangan')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
+
                                 <div class="form-group mb-4 col-6">
                                     <label for="ongkos_kirim" class="fw-semibold">Ongkos Kirim</label>
-                                    <select name="ongkos_kirim" class="form-control" id="ongkos_kirim" disabled>
-                                        <option value="0">- Gratis Ongkir -</option>
+                                    <select name="ongkos_kirim"
+                                        class="form-control @error('ongkos_kirim')
+                                    is-invalid
+                                @enderror"
+                                        id="ongkos_kirim" disabled>
+                                        <option value="">- Gratis Ongkir -</option>
                                         @foreach ($ongkir as $ongkir)
                                             <option value="{{ $ongkir->harga_ongkir }}">{{ $ongkir->daerah }} - Rp
                                                 {{ number_format($ongkir->harga_ongkir, 0, ',', '.') }}</option>
                                         @endforeach
                                     </select>
+                                    @error('ongkos_kirim')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
                             </div>
+
                             <div class="row">
                                 <div class="form-group mb-4 col-6">
                                     <label for="inputtanggal" class="fw-semibold">Tanggal Ambil / Kirim</label>
-                                    <input type="date" class="form-control mt-1" id="tanggal" name="tanggal"
-                                        placeholder="tanggal"
+                                    <input type="date"
+                                        class="form-control mt-1 @error('tanggal')
+                                    is-invalid
+                                @enderror"
+                                        id="tanggal" name="tanggal" placeholder="tanggal"
                                         min="{{ \Carbon\Carbon::now()->addDays(3)->format('Y-m-d') }}">
+                                    @error('tanggal')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
+
                                 <div class="form-group
                                         mb-4 col-6">
                                     <label for="inputjam" class="fw-semibold">Jam Ambil / Kirim</label>
-                                    <input type="time" class="form-control mt-1" id="jam" name="jam"
-                                        placeholder="jam" min="06:00" max="21:00">
+                                    <input type="time"
+                                        class="form-control mt-1 @error('jam')
+                                    is-invalid
+                                @enderror"
+                                        id="jam" name="jam" placeholder="jam" min="06:00" max="21:00">
+                                    @error('jam')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-5">
+                    <div class="col-12 col-lg-5">
                         <div class="border p-3 border-secondary-subtle rounded-3 bg-white">
                             <p class="text-center fs-3 fw-bold mb-5">RINGKASAN BELANJA</p>
                             <div class="row mb-3">
@@ -116,8 +172,7 @@
                                 <p class="col-6 text-end fw-bold" id="shippingCost">Rp. 0</p>
                             </div>
                             @php
-                                $ongkir = 60000;
-                                $totalHargaPesanan = $totalHarga + $ongkir;
+                                $totalHargaPesanan = 0;
                             @endphp
                             <div class="row mb-4">
                                 <p class="col-6 fw-bold text-orange">TOTAL HARGA PESANAN</p>

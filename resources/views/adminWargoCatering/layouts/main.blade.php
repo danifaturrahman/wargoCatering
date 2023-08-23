@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="/assets/atlantis/css/bootstrap.min.css">
     <link rel="stylesheet" href="/assets/atlantis/css/style.css">
     <link rel="stylesheet" href="/assets/atlantis/css/atlantis.min.css">
+    <link rel="stylesheet" type="text/css" media="print" href="/assets/atlantis/css/print-style.css">
+
 
     <!-- Fonts and icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">

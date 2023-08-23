@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('alamat_pengiriman');
             $table->string('keterangan_pengiriman');
             $table->string('harga_pengiriman');
-            // $table->enum('status_pengiriman', ['Belum Dikirim', 'Dalam Pengiriman', 'Sudah Dikirim']);
             $table->decimal('total_harga', 10, 2);
             $table->enum('status_pesanan', ['Belum Dibayar', 'Menunggu Pelunasan', 'Lunas']);
             $table->date('tanggal_pesanan_dibuat');

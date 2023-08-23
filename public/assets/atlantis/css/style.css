@@ -80,3 +80,14 @@
 .fw-bold {
     font-weight: 700 !important;
 }
+
+/* Hide elements you don't want to print */
+#catatanContent {
+    display: none;
+}
+
+/* Adjust layout for printing */
+.card {
+    page-break-before: always;
+    page-break-inside: avoid;
+}

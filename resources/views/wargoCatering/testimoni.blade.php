@@ -3,15 +3,13 @@
 @section('container')
     <section>
         <div class="container p-5">
-            <div class="row text-center">
-                <div class="col-lg-6 m-auto">
-                    <p class="text-orange fw-bold fs-20 m-0">KATEGORI</p>
-                    <p class="fs-28 text-default fw-semibold">
-                        Testimoni dari pelanggan Wargo Catering
-                    </p>
-                </div>
+            <div class="row pt-4 pb-5 text-center">
+                <p class="text-orange fw-bold fs-20 m-0">Testimoni</p>
+                <p class="fs-28 fw-bold title-section">
+                    Testimoni dari pelanggan Wargo Catering.
+                </p>
             </div>
-            <div class="row text-center py-4">
+            <div class="row text-center card p-5">
                 <div class="col-md-12">
                     <!-- Carousel wrapper -->
                     <div id="carouselBasicExample" class="carousel slide carousel-dark" data-bs-ride="carousel">
