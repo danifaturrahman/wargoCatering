@@ -11,35 +11,32 @@
         <hr>
         <div class="fs-2 mb-5 mt-3 ">
             <p class="fs-16 fw-bold text-center">
-                Update Ongkos Kirim Baru
+                Tambah FAQ
             </p>
         </div>
-        <form action="/dashboard/ongkos-kirim/{{ $ongkir->id }}" method="POST">
-            @method('put')
+        <form action="/dashboard/faq" method="POST">
             @csrf
             <div class="mb-3">
-                <label for="daerah" class="form-label fw-semibold">Nama Daerah</label>
+                <label for="pertanyaan" class="form-label fw-semibold">Pertanyaan</label>
                 <input type="text"
                     class="form-control w-50
-                @error('daerah')
+                @error('pertanyaan')
                     is-invalid
                 @enderror"
-                    id="daerah" name="daerah" autofocus value="{{ old('daerah', $ongkir->daerah) }}">
-                @error('daerah')
+                    id="pertanyaan" name="pertanyaan" autofocus value="{{ old('pertanyaan') }}">
+                @error('pertanyaan')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>
                 @enderror
             </div>
 
-            <div class="mb-3">
-                <label for="harga_ongkir">Harga Ongkos Kirim</label>
-                <input class="form-control w-50 @error('harga_ongkir')
-                is-invalid
-            @enderror"
-                    type="number" name="harga_ongkir" id="harga_ongkir_input"
-                    value="{{ old('harga_ongkir', $ongkir->harga_ongkir) }}">
-                @error('harga_ongkir')
+            <div class="mb-5">
+                <label for="deskripsi" class="form-label fw-semibold 
+                ">Deskirpsi</label>
+                <input id="deskripsi" type="hidden" name="deskripsi" value="{{ old('deskripsi') }}" required>
+                <trix-editor input="deskripsi"></trix-editor>
+                @error('deskripsi')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>
@@ -51,6 +48,25 @@
                 href="{{ URL::previous() }}
                 ">Kembali</a>
         </form>
-
     </div>
+
+    <script>
+        document.addEventListener('trix-file-accept', function(e) {
+            e.preventDefault();
+        })
+
+        function previewImage() {
+            const gambar = document.querySelector('#gambar');
+            const imgPreview = document.querySelector('.img-preview')
+
+            imgPreview.style.display = 'block';
+
+            const oFReader = new FileReader();
+            oFReader.readAsDataURL(gambar.files[0]);
+
+            oFReader.onload = function(oFREvent) {
+                imgPreview.src = oFREvent.target.result;
+            }
+        }
+    </script>
 @endsection

@@ -26,12 +26,12 @@
 
 
 <!-- Header -->
-<nav class="navbar navbar-expand-lg navbar-light shadow">
+<nav class="navbar navbar-expand-lg navbar-light shadow bg-white">
     <div class="container d-flex justify-content-between align-items-center">
         <div class="col-2 col-sm-2 col-md-2 col-lg-1">
             <img src="/assets/img/logo-wargo-catering.png" class="img-fluid" style="width: 60%" alt="">
         </div>
-        <a class="navbar-brand text-orange fw-semibold fs-30" href="/home">
+        <a class="navbar-brand text-orange fw-semibold fs-24 title-section" href="/home">
             Wargo Catering
         </a>
 
@@ -45,7 +45,7 @@
             id="templatemo_main_nav">
             <div class="flex-fill">
                 <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
-                    <li class="nav-item {{ Request::is('home', ' ') ? 'nav-active' : '' }}">
+                    <li class="nav-item {{ Request::is('home', '/') ? 'nav-active' : '' }}">
                         <a class="nav-link mx-1 {{ Request::is('home') ? 'nav-active-color' : '' }}"
                             href="/home">Beranda</a>
                     </li>
@@ -68,37 +68,39 @@
                 </ul>
             </div>
             <div class="navbar align-self-center d-flex">
-                <div class="d-lg-none flex-sm-fill mt-3 mb-4 col-7 col-sm-auto pr-3">
-                    <div class="input-group">
-                        <input type="text" class="form-control" id="inputMobileSearch" placeholder="Search ...">
-                        <div class="input-group-text">
-                            <i class="fa fa-fw fa-search"></i>
-                        </div>
-                    </div>
-                </div>
-                <a class="nav-icon d-none d-lg-inline" href="#" data-bs-toggle="modal"
-                    data-bs-target="#templatemo_search">
-                    <i class="fa fa-fw fa-search text-dark mr-2"></i>
-                </a>
-                <a class="nav-icon position-relative text-decoration-none" href="/cart">
-                    <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
-                    <span
-                        class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">7</span>
-                </a>
-                <a class="nav-icon position-relative text-decoration-none" href="/user-dashboard-profile">
-                    <i class="fa fa-fw fa-user text-dark mr-3"></i>
-                    {{-- <span
-                        class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">+99</span> --}}
-                </a>
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
+                <div class="dropdown dropdown-hover">
+                    <a class="nav-icon position-relative text-decoration-none fs-20" role="button">
+                        <i class="fa fa-fw fa-user text-dark mr-3"></i>
+                    </a>
+                    <ul class="dropdown-menu p-2">
+                        <li><a class="dropdown-item fs-16" href="/profile">Profile</a></li>
+                        <li><a class="dropdown-item" href="/user-dashboard-order">Pesanan</a></li>
+                        <li><a class="dropdown-item" href="/user-dashboard-notifikasi">Notifikasi</a></li>
+                        <hr>
+                        @if (Auth::check())
+                            <li>
+                                <form class="ms-3" method="POST" action="/logout">
+                                    @csrf
+                                    <button type="submit" class="btn btn-danger ">Log out</button>
+                                </form>
+                            </li>
+                        @else
+                            <a href="{{ route('login') }}" class="ms-3 mb-2 btn btn-primary btn-sm">Login</a>
 
-                    <x-dropdown-link :href="route('logout')"
-                        onclick="event.preventDefault();
-                                        this.closest('form').submit();">
-                        {{ __('Log Out') }}
-                    </x-dropdown-link>
-                </form>
+                            <a href="{{ route('register') }}" class="ms-3 btn btn-warning btn-sm">Register</a>
+                        @endif
+
+                    </ul>
+                </div>
+
+                <a class="nav-icon position-relative text-decoration-none fs-20" href="/cart">
+                    <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
+                    @if (Auth::check())
+                        <span
+                            class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-danger">{{ Auth::user()->cart->count() }}</span>
+                    @endif
+                </a>
+
             </div>
         </div>
 

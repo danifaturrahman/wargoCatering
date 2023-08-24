@@ -90,10 +90,25 @@
                     </a>
                 </li>
 
+                <li class="nav-item {{ Request::is('dashboard/faq*') ? 'active' : '' }}">
+                    <a href="/dashboard/faq">
+                        <i class="
+                        fas fa-question-circle"></i>
+                        <p>FAQs</p>
+                    </a>
+                </li>
+
                 <li class="nav-item {{ Request::is('dashboard/laporan-transaksi*') ? 'active' : '' }}">
                     <a href="/dashboard/laporan-transaksi">
                         <i class="fas fa-book"></i>
                         <p>Laporan Transaksi</p>
+                    </a>
+                </li>
+
+                <li class="nav-item {{ Request::is('dashboard/pesan-kritik*') ? 'active' : '' }}">
+                    <a href="/dashboard/pesan-kritik">
+                        <i class="fas fa-book"></i>
+                        <p>Kritik Saran</p>
                     </a>
                 </li>
 

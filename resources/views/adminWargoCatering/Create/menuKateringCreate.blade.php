@@ -77,8 +77,8 @@
                 @enderror
             </div>
             <div class="mb-5">
-                <label for="deskripsi" class="form-label 
-                ">Description</label>
+                <label for="deskripsi" class="form-label fw-semibold 
+                ">Deskirpsi</label>
                 <input id="deskripsi" type="hidden" name="deskripsi" value="{{ old('deskripsi') }}" required>
                 <trix-editor input="deskripsi"></trix-editor>
                 @error('deskripsi')

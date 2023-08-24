@@ -14,7 +14,7 @@
                     <i class="flaticon-right-arrow"></i>
                 </li>
                 <li class="nav-item">
-                    <a href="/dashboard/alat-katering">Tabel</a>
+                    <a href="/dashboard/data-pelanggan">Tabel</a>
                 </li>
             </ul>
         </div>

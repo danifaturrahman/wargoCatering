@@ -39,11 +39,15 @@
                                 </li>
                                 <li class="text-muted mb-2"><i class="fas fa-circle" style="color:#C15E28 ;"></i> <span
                                         class="fw-medium fs-18">Tgl. Pengembalian:
-                                    </span>{{ \Carbon\Carbon::parse($peminjaman->update_at)->isoFormat('dddd, DD MMMM YYYY') }}
+                                    </span>
+                                    @if ($peminjaman->status == 'Sudah Dikembalikan')
+                                        {{ \Carbon\Carbon::parse($peminjaman->update_at)->isoFormat('dddd, DD MMMM YYYY') }}
+                                    @else
+                                        -
+                                    @endif
                                 </li>
                                 <li class="text-muted"><i class="fas fa-circle" style="color:#C15E28;"></i> <span
-                                        class="me-1 fw-medium">Status: </span><span
-                                        class="badge bg-warning text-black fw-bold">
+                                        class="me-1 fw-medium">Status: </span><span class="text-orange fw-bold">
                                         {{ $peminjaman->status }}</span></li>
                             </ul>
                         </div>
@@ -79,6 +83,9 @@
                 <div class="col-10 p-3" style="background-color: rgb(223, 223, 255); border-radius: 7px">
                     <p class="fw-bold fs-16">Catatan Pengembalian</p>
                     <p class="text-justify">
+                        @empty($peminjaman->catatan)
+                            Tidak ada catatan.
+                        @endempty
                         {!! $peminjaman->catatan !!}
                 </div>
             </div>

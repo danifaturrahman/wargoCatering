@@ -6,12 +6,15 @@ use Illuminate\Http\Request;
 
 use App\Models\Alat;
 use App\Models\DetailPeminjamanAlat;
+use App\Models\FAQ;
 use App\Models\Kategori;
 use App\Models\Menu;
 use App\Models\OngkosKirim;
 use App\Models\PeminjamanAlat;
 use App\Models\Pesanan;
+use App\Models\PesanKritik;
 use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -314,11 +317,69 @@ class AdminWargoCateringController extends Controller
     }
 
 
+    // FAQ
+
+    public function faq()
+    {
+        $faq = FAQ::all();
+
+        return view('adminWargoCatering.faq', [
+            'faq' => $faq
+        ]);
+    }
+
+    public function createFaq()
+    {
+        return view('adminWargoCatering.Create.faqCreate');
+    }
+
+    public function storeFaq(Request $request)
+    {
+        $validatedData = $request->validate([
+            'pertanyaan' => 'required|string',
+            'deskripsi' => 'required|string'
+        ]);
+
+
+        FAQ::create($validatedData);
+
+        return redirect('/dashboard/faq')->with('success', 'FAQ baru berhasil ditambahkan!');
+    }
+
+
+    public function editFaq($id)
+    {
+        $faq = FAQ::findOrFail($id);
+        return view('adminWargoCatering.Edit.faqEdit', [
+            'faq' => $faq,
+        ]);
+    }
+
+    public function updateFaq(Request $request, $id)
+    {
+        $validatedData = $request->validate([
+            'pertanyaan' => 'required|string',
+            'deskripsi' => 'required|string'
+        ]);
+
+        FAQ::where('id', $id)
+            ->update($validatedData);
+
+        return redirect('/dashboard/faq')->with('success', 'FAQ berhasil di update!');
+    }
+
+    public function destroyFaq($id)
+    {
+        FAQ::where('id', $id)->delete();
+        return redirect('/dashboard/faq')->with('success', 'FAQ berhasil dihapus!');
+    }
+
+
     // PESANAN PELANGGAN
 
     public function pesananPelanggan()
     {
-        $pesanan = Pesanan::all();
+        $pesanan = Pesanan::orderBy('id', 'desc')->get();
 
         return view('adminWargoCatering.pesananPelanggan', [
             'pesanan' => $pesanan
@@ -426,5 +487,16 @@ class AdminWargoCateringController extends Controller
             ]);
 
         return redirect()->back()->with('success', 'Status pengembalian berhasil diubah');
+    }
+
+    //KRITIK SARAN
+
+    public function pesanKritik()
+    {
+        $pesanKritik = PesanKritik::all();
+
+        return view('adminWargoCatering.pesanKritik', [
+            'pesanKritik' => $pesanKritik
+        ]);
     }
 }

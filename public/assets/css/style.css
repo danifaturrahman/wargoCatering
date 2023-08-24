@@ -1,4 +1,14 @@
 /* Body */
+.hero {
+    background-image: url("/assets/img/hero-img.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
+section {
+    min-height: 90vh;
+}
 
 .bg-orange {
     background-color: #C15E28;
@@ -83,6 +93,10 @@
 }
 
 .nav-item .nav-link:hover {
+    color: #C15E28 !important;
+}
+
+.dropdown-item:hover {
     color: #C15E28 !important;
 }
 
@@ -245,3 +259,7 @@
 }
 
 /* ----------------------- END OF SECTION DETAIL MENU --------------------*/
+
+.dropdown-hover:hover .dropdown-menu {
+    display: block;
+}

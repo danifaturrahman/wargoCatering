@@ -1,67 +1,31 @@
 @extends('wargoCatering.layouts.main')
 
 @section('container')
-    <section>
+    <section class="bg-white d-flex align-items-center">
         <div class="container-fluid">
             <div class="row p-5 ">
                 <div class="row pb-2 text-center">
                     <p class="text-orange fw-bold fs-20 m-0">Dashboard Pelanggan</p>
                     <p class="fs-28 fw-bold title-section">
-                        Menu dashboard untuk pelanggan Wargo Catering.
+                        Detail pesanan pelanggan Wargo Catering.
                     </p>
-                </div>
-                <div class="col-lg-3">
-                    <div class="container border border-secondary-subtle p-4 bg-white rounded-2">
-                        <a href="/user-dashboard-profile" class="text-decoration-none row non-active-user-dashboard">
-                            <div class="row mb-1">
-                                <div class="col-2">
-                                    <i class="fas fa-user"></i>
-                                </div>
-                                <div class="col-9">
-                                    Profile
-                                </div>
-                            </div>
-                        </a>
-
-                        <a href="/user-dashboard-profile" class="text-decoration-none row my-1 active-user-dashboard">
-                            <div class="row mb-1">
-                                <div class="col-2">
-                                    <i class="fas fa-book"></i>
-                                </div>
-                                <div class="col-10">
-                                    Pesanan
-                                </div>
-                            </div>
-                        </a>
-
-                        <a href="/user-dashboard-profile" class="text-decoration-none row non-active-user-dashboard">
-                            <div class="row">
-                                <div class="col-2">
-                                    <i class="fas fa-bell"></i>
-                                </div>
-                                <div class="col-10">
-                                    Notifikasi
-                                </div>
-                            </div>
-                        </a>
-
-                    </div>
                 </div>
 
                 @php
                     $id = 1;
                 @endphp
 
-                <div class="col-9">
+                <div class="container">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-body">
                                     <div class="table-responsive">
-                                        <table id="basic-datatables" class="display table table-striped table-hover">
+                                        <table id="basic-datatabless" class="display table table-striped table-hover">
                                             <thead>
                                                 <tr class="text-center fs-16">
                                                     <th>No</th>
+                                                    <th>No. Pesanan</th>
                                                     <th>Tanggal Transaksi</th>
                                                     <th>Status</th>
                                                     <th>Total</th>
@@ -72,6 +36,7 @@
                                                 @foreach ($pesanan as $pesanan)
                                                     <tr class="text-center fs-16">
                                                         <td>{{ $id++ }}</td>
+                                                        <td>{{ $pesanan->nomor_pesanan }}</td>
                                                         <td>{{ $pesanan->tanggal_pesanan_dibuat }}</td>
                                                         <td>
                                                             @if ($pesanan->status_pesanan === 'Belum Dibayar')
@@ -120,12 +85,56 @@
                                                                 </form>
                                                             @endif
                                                             @if ($pesanan->status_pesanan === 'Lunas')
-                                                                <a class="btn btn-warning btn-sm mx-2 fs-16">Penilaian</a>
+                                                                <!-- Button to open modal -->
+                                                                <button type="button"
+                                                                    class="btn btn-warning btn-sm mx-2 fs-16"
+                                                                    data-bs-toggle="modal"
+                                                                    data-bs-target="#ratingModal">Penilaian</button>
+
+                                                                <!-- Rating Modal -->
+                                                                <div class="modal fade text-start" id="ratingModal"
+                                                                    tabindex="-1" aria-labelledby="ratingModalLabel"
+                                                                    aria-hidden="true">
+                                                                    <div class="modal-dialog">
+                                                                        <div class="modal-content">
+                                                                            <div class="modal-header">
+                                                                                <h5 class="modal-title"
+                                                                                    id="ratingModalLabel">Beri Penilaian
+                                                                                </h5>
+                                                                                <button type="button" class="btn-close"
+                                                                                    data-bs-dismiss="modal"
+                                                                                    aria-label="Close"></button>
+                                                                            </div>
+                                                                            <div class="modal-body">
+                                                                                <!-- Form for rating -->
+                                                                                <form action="/testimoni" method="post">
+                                                                                    @csrf
+                                                                                    <div class="mb-3">
+                                                                                        <label for="ulasan"
+                                                                                            class="form-label">Ulasan</label>
+                                                                                        <textarea class="form-control" id="ulasan" name="ulasan" rows="3" required></textarea>
+                                                                                    </div>
+                                                                                    <div class="mb-3">
+                                                                                        <label for="nilai"
+                                                                                            class="form-label">Nilai</label>
+                                                                                        <input type="number"
+                                                                                            class="form-control"
+                                                                                            id="nilai" name="nilai"
+                                                                                            min="1" max="5"
+                                                                                            required>
+                                                                                    </div>
+                                                                                    <button type="submit"
+                                                                                        class="btn btn-primary">Kirim
+                                                                                        Ulasan</button>
+                                                                                </form>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
                                                             @endif
                                                         </td>
                                                     </tr>
                                                 @endforeach
-
                                             </tbody>
                                         </table>
                                     </div>

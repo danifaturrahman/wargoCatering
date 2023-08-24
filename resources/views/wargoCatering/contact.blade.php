@@ -1,55 +1,64 @@
 @extends('wargoCatering.layouts.main')
 
 @section('container')
-    <!-- Modal -->
-    <div class="modal fade bg-white" id="templatemo_search" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="w-100 pt-1 mb-5 text-right">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <form action="" method="get" class="modal-content modal-body border-0 p-0">
-                <div class="input-group mb-2">
-                    <input type="text" class="form-control" id="inputModalSearch" name="q"
-                        placeholder="Search ...">
-                    <button type="submit" class="input-group-text bg-success text-light">
-                        <i class="fa fa-fw fa-search text-white"></i>
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-
     <!-- Start Contact -->
     <section class="bg-white">
         <div class="container py-5">
-            <div class="row text-center">
-                <div class="col-lg-6 m-auto">
-                    <p class="text-orange fw-bold fs-20 m-0">KONTAK</p>
-                    <p class="fs-28 text-default fw-semibold">
-                        Kontak untuk menghubungi Wargo Catering
-                    </p>
-                </div>
+            <div class="row pt-4 pb-4 text-center">
+                <p class="text-orange fw-bold fs-20 m-0">Kontak</p>
+                <p class="fs-28 fw-bold title-section">
+                    Cara untuk menghubungi Wargo Catering.
+                </p>
             </div>
-            <div class="row py-5">
+            <div class="row">
                 <div class="col-6 p-5">
-                    <form method="post">
+                    @if (session()->has('success'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('success') }}
+                        </div>
+                    @endif
+                    <form action="/contact" method="post">
+                        @csrf
                         <div class="row">
                             <div class="form-group col-md-6 mb-3">
-                                <label for="inputname">Nama</label>
-                                <input type="text" class="form-control mt-1" id="name" name="name"
-                                    placeholder="Name">
+                                <label for="inputnama fw-semibold">Nama</label>
+                                <input type="text"
+                                    class="form-control @error('nama')
+                                is-invalid
+                            @enderror mt-1"
+                                    id="nama" name="nama" placeholder="Nama...">
+                                @error('nama')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
                             <div class="form-group col-md-6 mb-3">
-                                <label for="inputemail">Email</label>
-                                <input type="email" class="form-control mt-1" id="email" name="email"
-                                    placeholder="Email">
+                                <label for="inputemail fw-semibold">Email</label>
+                                <input type="email"
+                                    class="form-control @error('email')
+                                is-invalid
+                            @enderror mt-1"
+                                    id="email" name="email" placeholder="Email...">
+                                @error('email')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
                         </div>
                         <div class="mb-3">
-                            <label for="inputmessage">Kritik & Saran</label>
-                            <textarea class="form-control mt-1" id="message" name="message" placeholder="Message" rows="8"></textarea>
+                            <label for="inputPesan fw-semibold">Kritik & Saran</label>
+                            <textarea
+                                class="form-control @error('pesan')
+                            is-invalid
+                        @enderror mt-1"
+                                id="pesan" name="pesan" placeholder="Ketik pesan disini.." rows="8"></textarea>
+                            @error('pesan')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                         <div class="row">
                             <div class="col text-end mt-2">
@@ -64,7 +73,6 @@
                         <div class="row mb-3">
                             <p class="fs-15 fw-regular">0895 6198 07702</p>
                         </div>
-
                     </div>
                     <div class="row mt-3">
                         <p class="fs-20 fw-semibold">Alamat</p>
@@ -82,10 +90,10 @@
     <section class="bg-light">
         <div class="container py-5">
             <div class="row text-center">
-                <div class="col-lg-6 m-auto">
-                    <p class="text-orange fw-bold fs-20 m-0">MAP</p>
-                    <p class="fs-28 text-default fw-semibold">
-                        Map menuju lokasi Wargo Catering
+                <div class="row pt-4 pb-4 text-center">
+                    <p class="text-orange fw-bold fs-20 m-0">Denah</p>
+                    <p class="fs-28 fw-bold title-section">
+                        Denah menuju lokasi usaha Wargo Catering.
                     </p>
                 </div>
             </div>

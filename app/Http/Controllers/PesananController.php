@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Models\DetailPesanan;
+use App\Models\Menu;
 use App\Models\Pesanan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -281,6 +282,13 @@ class PesananController extends Controller
                 $pesanan->update(['midtrans_id' => $midtransId]);
             } else {
                 $pesanan->update(['status_pesanan' => 'Lunas']);
+
+                // Menambahkan jumlah menu yang dipesan ke menu terlaris
+                foreach ($pesanan->detail_pesanan as $detailPesanan) {
+                    $menu = Menu::find($detailPesanan->menu_id);
+                    $menu->jumlah_pesanan += $detailPesanan->jumlah;
+                    $menu->save();
+                }
             }
         }
     }

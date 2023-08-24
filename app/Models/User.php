@@ -56,4 +56,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Cart::class);
     }
+
+    public function testimoni()
+    {
+        return $this->hasMany(Rating::class);
+    }
 }

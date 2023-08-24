@@ -28,6 +28,9 @@
         integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
     </script>
 
+    <!-- Include jQuery and DataTables CSS/JS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css">
+
     <!-- Bootstrap CSS & JS CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
@@ -61,7 +64,7 @@ https://templatemo.com/tm-559-zay-shop
     <!-- Start Script -->
     <script src="/assets/js/jquery-1.11.0.min.js"></script>
     <script src="/assets/js/jquery-migrate-1.2.1.min.js"></script>
-    <script src="/assets/js/bootstrap.bundle.min.js"></script>
+    {{-- <script src="/assets/js/bootstrap.bundle.min.js"></script> --}}
     <script src="/assets/js/templatemo.js"></script>
     <script src="/assets/js/custom.js"></script>
     <!-- End Script -->
@@ -127,7 +130,10 @@ https://templatemo.com/tm-559-zay-shop
                             });
 
                         column.data().unique().sort().each(function(d, j) {
-                            select.append('<option value="' + d + '">' + d +
+                            select.append(
+                                '<option value="' +
+                                d +
+                                '">' + d +
                                 '</option>')
                         });
                     });
@@ -152,6 +158,16 @@ https://templatemo.com/tm-559-zay-shop
                 $('#addRowModal').modal('hide');
 
             });
+        });
+    </script>
+
+    <!-- Include jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Include DataTables JS -->
+    <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#basic-datatabless').DataTable();
         });
     </script>
 </body>

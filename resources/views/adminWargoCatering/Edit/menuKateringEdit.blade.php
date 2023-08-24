@@ -11,7 +11,7 @@
         <hr>
         <div class="fs-2 mb-5 mt-3 ">
             <p class="fs-16 fw-bold text-center">
-                Tambah Menu Katering Baru
+                Update Menu Katering Baru
             </p>
         </div>
         <form action="/dashboard/menu-katering/{{ $menu->id }}" method="POST" enctype="multipart/form-data">

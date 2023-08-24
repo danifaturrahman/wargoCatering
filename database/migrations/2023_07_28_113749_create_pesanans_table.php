@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('pesanans', function (Blueprint $table) {
             $table->id();
             $table->string('nomor_pesanan');
+            $table->string('midtrans_id');
             $table->foreignId('user_id');
             $table->string('alamat_pengiriman');
             $table->string('keterangan_pengiriman');

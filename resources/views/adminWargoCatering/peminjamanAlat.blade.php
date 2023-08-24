@@ -41,7 +41,7 @@
                                     <tr class="text-center">
                                         <th>No</th>
                                         <th>Nama Peminjam</th>
-                                        <th>Nomor Pesanan</th>
+                                        {{-- <th>Nomor Pesanan</th> --}}
                                         <th>Status</th>
                                         <th>Tanggal Peminjaman</th>
                                         <th>Aksi</th>
@@ -52,7 +52,7 @@
                                         <tr class="text-center">
                                             <td>{{ $id++ }}</td>
                                             <td>{{ $peminjaman->pesanan->user->name }}</td>
-                                            <td>{{ $peminjaman->pesanan->nomor_pesanan }}</td>
+                                            {{-- <td>{{ $peminjaman->pesanan->nomor_pesanan }}</td> --}}
                                             <td>
                                                 @if ($peminjaman->status == 'Sedang Dipinjam')
                                                     <a href="#" class="btn btn-info btn-sm fs-14">Sedang Dipinjam</a>
@@ -71,56 +71,53 @@
                                                     data-target="#statusModal_{{ $peminjaman->id }}">
                                                     Ubah Status
                                                 </button>
-                                                <!-- Modal -->
-                                                <div class="modal fade" id="statusModal_{{ $peminjaman->id }}"
-                                                    tabindex="-1" role="dialog"
-                                                    aria-labelledby="statusModalLabel_{{ $peminjaman->id }}"
-                                                    aria-hidden="true">
-                                                    <div class="modal-dialog" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title"
-                                                                    id="statusModalLabel_{{ $peminjaman->id }}">Ubah
-                                                                    Status dan Catatan</h5>
-                                                                <button type="button" class="close" data-dismiss="modal"
-                                                                    aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <form
-                                                                    action="/dashboard/peminjaman-alat/{{ $peminjaman->id }}"
-                                                                    method="POST">
-                                                                    @csrf
-                                                                    @method('put')
-                                                                    <div class="mb-3">
-                                                                        <label for="status"
-                                                                            class="form-label">Status</label>
-                                                                        <select name="status"
-                                                                            class="form-select form-control" required>
-                                                                            <option value="Sudah Dikembalikan">Sudah
-                                                                                Dikembalikan</option>
-                                                                            <option value="Sedang Dipinjam">Sedang Dipinjam
-                                                                            </option>
-                                                                        </select>
-                                                                    </div>
-                                                                    <div class="mb-3">
-                                                                        <label for="catatan"
-                                                                            class="form-label 
+                                            </td>
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="statusModal_{{ $peminjaman->id }}" tabindex="-1"
+                                                role="dialog" aria-labelledby="statusModalLabel_{{ $peminjaman->id }}"
+                                                aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title fw-semibold"
+                                                                id="statusModalLabel_{{ $peminjaman->id }}">Ubah
+                                                                Status dan Catatan</h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <form action="/dashboard/peminjaman-alat/{{ $peminjaman->id }}"
+                                                                method="POST">
+                                                                @csrf
+                                                                @method('put')
+                                                                <div class="mb-3">
+                                                                    <label for="status" class="form-label">Status</label>
+                                                                    <select name="status" class="form-select form-control"
+                                                                        required>
+                                                                        <option value="Sudah Dikembalikan">Sudah
+                                                                            Dikembalikan</option>
+                                                                        <option value="Sedang Dipinjam">Sedang Dipinjam
+                                                                        </option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="mb-3">
+                                                                    <label for="catatan"
+                                                                        class="form-label 
                                                                             ">Catatan</label>
-                                                                        <input id="catatan" type="hidden" name="catatan"
-                                                                            required>
-                                                                        <trix-editor input="catatan"></trix-editor>
-                                                                    </div>
-                                                                    <button type="submit"
-                                                                        class="btn btn-success btn-sm fs-14">Ubah
-                                                                        Status</button>
-                                                                </form>
-                                                            </div>
+                                                                    <input id="catatan" type="hidden" name="catatan"
+                                                                        required>
+                                                                    <trix-editor input="catatan"></trix-editor>
+                                                                </div>
+                                                                <button type="submit"
+                                                                    class="btn btn-success btn-sm fs-14">Ubah
+                                                                    Status</button>
+                                                            </form>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </td>
+                                            </div>
                                         </tr>
                                     @endforeach
                                 </tbody>

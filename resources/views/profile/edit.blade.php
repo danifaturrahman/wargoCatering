@@ -1,29 +1,33 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Profile') }}
-        </h2>
-    </x-slot>
+@extends('wargoCatering.layouts.main')
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-                <div class="max-w-xl">
-                    @include('profile.partials.update-profile-information-form')
+@section('container')
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="row pb-4 text-center">
+                    <p class="text-orange fw-bold fs-20 m-0">Dashboard Pelanggan</p>
+                    <p class="fs-28 fw-bold title-section">
+                        Informasi profil pelanggan Wargo Catering.
+                    </p>
                 </div>
-            </div>
 
-            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-                <div class="max-w-xl">
-                    @include('profile.partials.update-password-form')
+                <div class="col-md-10 mb-5">
+                    <div class="p-4 bg-white shadow rounded-4 mb-6">
+                        <div class="">
+                            @include('profile.partials.update-profile-information-form')
+                        </div>
+                    </div>
                 </div>
-            </div>
 
-            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-                <div class="max-w-xl">
-                    @include('profile.partials.delete-user-form')
+                <div class="col-md-10 mb-3">
+                    <div class="p-4 bg-white shadow rounded-4 mb-6">
+                        <div class="">
+                            @include('profile.partials.update-password-form')
+                        </div>
+                    </div>
                 </div>
+
             </div>
         </div>
-    </div>
-</x-app-layout>
+    </section>
+@endsection

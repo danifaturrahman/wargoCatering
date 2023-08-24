@@ -11,7 +11,7 @@
         <hr>
         <div class="fs-2 mb-5 mt-3 ">
             <p class="fs-16 fw-bold text-center">
-                Tambah Alat Katering Baru
+                Update Alat Katering Baru
             </p>
         </div>
         <form action="/dashboard/alat-katering/{{ $alat->id }}" method="POST" enctype="multipart/form-data">

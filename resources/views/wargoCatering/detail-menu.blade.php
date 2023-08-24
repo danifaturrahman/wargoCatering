@@ -44,7 +44,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h1 class="h2">{{ $menu->nama }}</h1>
-                            <p class="h3 py-2">Rp {{ number_format($menu->harga, 0, ',', '.') }}</p>
+                            <p class="h3 py-2 text-orange">Rp {{ number_format($menu->harga, 0, ',', '.') }}</p>
                             <ul class="list-inline">
                                 <li class="list-inline-item">
                                     <h6>Kategori:</h6>
@@ -61,7 +61,13 @@
                                     <h6>Minimal Pembelian :</h6>
                                 </li>
                                 <li class="list-inline-item">
-                                    <p class="text-muted"><strong>15 Porsi</strong></p>
+                                    <p class="text-muted"><strong>
+                                            @if ($menu->kategori->nama === 'Satuan')
+                                                1 Porsi
+                                            @else
+                                                15 Porsi
+                                            @endif
+                                        </strong></p>
                                 </li>
                             </ul>
 
@@ -84,7 +90,8 @@
                                 <div class="input-group mb-5" style="width: 30%">
                                     <label for="jumlah" class="input-group-text">Jumlah:</label>
                                     <input type="number" id="jumlah" name="jumlah" class="form-control text-center"
-                                        min="15" max="100" value="15">
+                                        @if ($menu->kategori->nama === 'Satuan') min="1" value="1" @else min="15" value="15" @endif
+                                        data-kategori="{{ $menu->kategori->nama }}" oninput="minimumOrder(this)">
                                 </div>
 
                                 <div class="row pb-3">
@@ -103,7 +110,7 @@
     <!-- Close Content -->
 
     <!-- Start Article -->
-    <section class="py-5">
+    <section class="py-5 bg-white">
         <div class="container">
             <div class="row text-left p-2 pb-3">
                 <h4>Menu {{ $menu->kategori->nama }} Lainnya</h4>
@@ -147,6 +154,17 @@
             // You can perform further actions here, like adding the item to the cart using JavaScript or making an AJAX request to the server to add the item to the cart.
             // For this example, let's just show an alert with the selected jumlah:
             alert('Added ' + jumlah + ' item(s) to cart.');
+        }
+
+        function minimumOrder(inputElement) {
+            const kategoriMenu = inputElement.getAttribute("data-kategori");
+            const inputValue = parseInt(inputElement.value);
+
+            if (kategoriMenu === "Satuan") {
+                inputElement.value = Math.max(inputValue, 1);
+            } else {
+                inputElement.value = Math.max(inputValue, 15);
+            }
         }
     </script>
 @endsection

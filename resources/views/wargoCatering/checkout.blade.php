@@ -90,7 +90,7 @@
                                     is-invalid
                                 @enderror"
                                         id="ongkos_kirim" disabled>
-                                        <option value="">- Gratis Ongkir -</option>
+                                        <option value="0">- Gratis Ongkir -</option>
                                         @foreach ($ongkir as $ongkir)
                                             <option value="{{ $ongkir->harga_ongkir }}">{{ $ongkir->daerah }} - Rp
                                                 {{ number_format($ongkir->harga_ongkir, 0, ',', '.') }}</option>
