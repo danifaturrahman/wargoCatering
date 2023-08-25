@@ -15,11 +15,11 @@
                             Rasa Menemui
                             Perayaan!"</p>
                         <div class="row justify-content-center gap-2 mt-5">
-                            <a href="/home#e-commerce"
+                            <a href="/menu"
                                 class="rounded-3 col-lg-2 col-md-3 col-sm-12 col-6 fs-20 fw-medium button-orange text-decoration-none text-white py-2">
                                 Beli Sekarang
                             </a>
-                            <a href="/home#deskripsi"
+                            <a href="/about"
                                 class="rounded-3 col-lg-2 col-md-3 col-sm-12 col-6 fs-20 fw-medium btn btn-success py-2">
                                 Selengkapnya
                             </a>

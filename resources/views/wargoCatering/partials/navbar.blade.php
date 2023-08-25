@@ -1,3 +1,10 @@
+@php
+    $user_id = auth()->id();
+    $unreadNotificationsCount = \App\Models\Notifikasi::where('user_id', $user_id)
+        ->where('status', 'unread')
+        ->count();
+@endphp
+
 <!-- Start Top Nav -->
 <nav class="navbar navbar-expand-lg bg-dark navbar-light d-none d-lg-block" id="templatemo_nav_top">
     <div class="container text-light">
@@ -46,7 +53,7 @@
             <div class="flex-fill">
                 <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
                     <li class="nav-item {{ Request::is('home', '/') ? 'nav-active' : '' }}">
-                        <a class="nav-link mx-1 {{ Request::is('home') ? 'nav-active-color' : '' }}"
+                        <a class="nav-link mx-1 {{ Request::is('home', '/') ? 'nav-active-color' : '' }}"
                             href="/home">Beranda</a>
                     </li>
                     <li class="nav-item {{ Request::is('menu') ? 'nav-active' : '' }}">
@@ -68,6 +75,25 @@
                 </ul>
             </div>
             <div class="navbar align-self-center d-flex">
+
+                <a class="nav-icon position-relative text-decoration-none fs-20" href="/cart">
+                    <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
+                    @if (Auth::check())
+                        <span
+                            class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-danger">{{ Auth::user()->cart->count() }}</span>
+                    @endif
+                </a>
+
+                <a href="/user-dashboard-notifikasi"
+                    class="text-decoration-none notification-icon position-relative fs-20 nav-icon">
+                    <i class="fa fa-fw fa-bell text-dark mr-1"></i>
+                    @if ($unreadNotificationsCount > 0)
+                        <span
+                            class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-danger">{{ $unreadNotificationsCount }}</span>
+                    @endif
+                </a>
+
+
                 <div class="dropdown dropdown-hover">
                     <a class="nav-icon position-relative text-decoration-none fs-20" role="button">
                         <i class="fa fa-fw fa-user text-dark mr-3"></i>
@@ -92,14 +118,6 @@
 
                     </ul>
                 </div>
-
-                <a class="nav-icon position-relative text-decoration-none fs-20" href="/cart">
-                    <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
-                    @if (Auth::check())
-                        <span
-                            class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-danger">{{ Auth::user()->cart->count() }}</span>
-                    @endif
-                </a>
 
             </div>
         </div>

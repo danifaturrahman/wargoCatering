@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cart;
 use App\Models\DetailPesanan;
 use App\Models\Menu;
+use App\Models\Notifikasi;
 use App\Models\Pesanan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -175,6 +176,14 @@ class PesananController extends Controller
             $cartItem->delete();
         }
 
+        // Tambahkan notifikasi saat checkout berhasil
+        $notification = new Notifikasi();
+        $notification->user_id = $user_id;
+        $notification->pesan = "Pesanan Anda berhasil dibuat. Silakan lakukan pembayaran.";
+        $notification->status = "unread";
+        $notification->save();
+
+
         $pesananId = $pesanan->id;
 
         // Redirect ke halaman terima kasih atau halaman sukses checkout
@@ -280,6 +289,16 @@ class PesananController extends Controller
                 $pesanan->update(['status_pesanan' => 'Menunggu Pelunasan']);
                 $midtransId = "PELUNASAN-" . time() . "-" . bin2hex(random_bytes(4));
                 $pesanan->update(['midtrans_id' => $midtransId]);
+
+                // Ambil user_id dari pesanan
+                $user_id = $pesanan->user_id;
+
+                // Tambahkan notifikasi saat pembayaran DP berhasil
+                $notification = new Notifikasi();
+                $notification->user_id = $user_id;
+                $notification->pesan = "Pembayaran uang muka berhasil. Mohon tunggu untuk pelunasan.";
+                $notification->status = "unread";
+                $notification->save();
             } else {
                 $pesanan->update(['status_pesanan' => 'Lunas']);
 
@@ -289,6 +308,16 @@ class PesananController extends Controller
                     $menu->jumlah_pesanan += $detailPesanan->jumlah;
                     $menu->save();
                 }
+
+                // Ambil user_id dari pesanan
+                $user_id = $pesanan->user_id;
+
+                // Tambahkan notifikasi saat pelunasan berhasil
+                $notification = new Notifikasi();
+                $notification->user_id = $user_id;
+                $notification->pesan = "Pembayaran pelunasan berhasil. Pesanan Anda telah lunas.";
+                $notification->status = "unread";
+                $notification->save();
             }
         }
     }

@@ -2,8 +2,8 @@
 
 @section('container')
     <!-- Start Contact -->
-    <section class="bg-white">
-        <div class="container py-5">
+    <section class="bg-white py-5">
+        <div class="container">
             <div class="row pt-4 pb-4 text-center">
                 <p class="text-orange fw-bold fs-20 m-0">Kontak</p>
                 <p class="fs-28 fw-bold title-section">
@@ -69,16 +69,45 @@
                 </div>
                 <div class="col-6 p-5">
                     <div class="row">
+                        <p class="fs-20 fw-semibold">Media Sosial</p>
+                        <div class="col-1 text-center">
+                            <p class="fs-15 fw-regular"><i class="
+                                fas fa-phone"></i></p>
+                        </div>
+                        <div class="col-11">
+                            <p class="fs-15 fw-regular text-orange fw-semibold">
+                                0895
+                                6198 07702</p>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
                         <p class="fs-20 fw-semibold">Kontak</p>
-                        <div class="row mb-3">
-                            <p class="fs-15 fw-regular">0895 6198 07702</p>
+                        <div class="col-1 text-center">
+                            <p class="fs-15 fw-regular"><i class="
+                                fab fa-whatsapp"></i></p>
+                            <p class="fs-15 fw-regular"><i class="
+                                fab fa-instagram"></i>
+                            </p>
+                        </div>
+                        <div class="col-11">
+                            <p class="fs-15 fw-regular text-orange fw-semibold">
+                                0895
+                                6198 07702</p>
+                            <p class="fs-15 fw-regular text-orange fw-semibold">
+                                @wargocatering</p>
                         </div>
                     </div>
                     <div class="row mt-3">
                         <p class="fs-20 fw-semibold">Alamat</p>
-                        <p class="fs-15 fw-regular">Indonesia</p>
-                        <p class="fs-15 fw-regular">Kalimantan Barat, Pontianak</p>
-                        <p class="fs-15 fw-regular">Komp. Perdana Square Blok I No. 10 - 11</p>
+                        <div class="col-1 text-center">
+                            <p><i class="fa-solid fa-location-dot"></i></p>
+                        </div>
+                        <div class="col-11">
+                            <p class="fs-15 fw-regular text-orange fw-semibold">Indonesia</p>
+                            <p class="fs-15 fw-regular text-orange fw-semibold">Kalimantan Barat, Pontianak</p>
+                            <p class="fs-15 fw-regular text-orange fw-semibold">Jalan Karna Sosial Gang Purwosari 2 Nomor
+                                25D</p>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -35,7 +35,7 @@ Route::group(['middleware' => ['auth', 'Pelanggan']], function () {
     Route::get('/checkout', [wargoCateringController::class, 'checkout']);
     Route::get('/user-dashboard-profile', [wargoCateringController::class, 'userProfile']);
     Route::get('/user-dashboard-order', [wargoCateringController::class, 'userOrder']);
-    Route::get('/user-dashboard-notification', [wargoCateringController::class, 'userNotification']);
+    Route::get('/user-dashboard-notifikasi', [wargoCateringController::class, 'userNotification']);
     Route::get('/invoice/{id}', [wargoCateringController::class, 'invoice']);
     Route::get('/cart', [wargoCateringController::class, 'cart']);
 

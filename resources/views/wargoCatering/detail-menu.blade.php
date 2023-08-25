@@ -93,7 +93,6 @@
                                         @if ($menu->kategori->nama === 'Satuan') min="1" value="1" @else min="15" value="15" @endif
                                         data-kategori="{{ $menu->kategori->nama }}" oninput="minimumOrder(this)">
                                 </div>
-
                                 <div class="row pb-3">
                                     <div class="col d-grid">
                                         <button type="submit" class="btn btn-success btn-lg rounded-pill" name="addToCart"

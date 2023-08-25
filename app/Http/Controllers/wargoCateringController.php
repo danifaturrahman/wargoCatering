@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Cart;
 use App\Models\DetailPesanan;
 use App\Models\FAQ;
+use App\Models\Notifikasi;
+use App\Models\User;
 use App\Models\Kategori;
 use App\Models\Menu;
 use App\Models\OngkosKirim;
@@ -22,6 +24,10 @@ class wargoCateringController extends Controller
     public function coba()
     {
         return view('wargoCatering.coba');
+    }
+
+    public function main()
+    {
     }
 
     public function home()
@@ -181,37 +187,19 @@ class wargoCateringController extends Controller
 
     public function userNotification()
     {
-        $user = Auth::user();
-        $user_id = $user->id;
+        $user_id = auth()->id();
 
-        $pesanan_pelanggan = Pesanan::where('user_id', $user_id)->orderByDesc('id')->get();
+        $notifikasi = Notifikasi::where('user_id', $user_id)->latest()->get();
 
-        foreach ($pesanan_pelanggan as $pesanan_pelanggan) {
-
-            // Pesan notifikasi untuk pesanan dibuat
-            if ($pesanan_pelanggan->status_pesanan == 'Belum Dibayar') {
-                $pesanDibuat = '<div class="border border-secondary-subtle p-2">';
-                $pesanDibuat .= '<p>Pesanan Dibuat - Tanggal Transaksi: ' . Carbon::parse($pesanan_pelanggan->tanggal_pesanan_dibuat)->isoFormat('dddd, DD MMMM YYYY') . '</p>';
-                $pesanDibuat .= '<p>Pesanan #' . $pesanan_pelanggan->id . ', Untuk menyelesaikan pesanan Anda, silahkan melakukan pembayaran DP sebesar Rp. ' . number_format($pesanan_pelanggan->harga_dp, 0, ',', '.') . '</p>';
-                $pesanDibuat .= '<p><a href="/detail-pesanan-pelanggan" class="border border-success p-1 rounded text-decoration-none">Tampilkan Rincian Pesanan</a></p>';
-                $pesanDibuat .= '</div>';
-
-                $notifikasiPesananDibuat[] = $pesanDibuat;
-            } elseif ($pesanan_pelanggan->status_pesanan == 'Menunggu Pelunasan') {
-                $pesanDibayar = '<div class="border border-secondary-subtle p-2">';
-                $pesanDibayar .= '<p>Pesanan Dibayar - Tanggal Transaksi: ' . Carbon::parse($pesanan_pelanggan->tanggal_pesanan_dibuat)->isoFormat('dddd, DD MMMM YYYY') . '</p>';
-                $pesanDibayar .= '<p>Pesanan #' . $pesanan_pelanggan->id . ', Untuk menyelesaikan pesanan Anda, silahkan melakukan pembayaran DP sebesar Rp. ' . number_format($pesanan_pelanggan->harga_dp, 0, ',', '.') . '</p>';
-                $pesanDibayar .= '<p><a href="/detail-pesanan-pelanggan" class="border border-success p-1 rounded text-decoration-none">Tampilkan Rincian Pesanan</a></p>';
-                $pesanDibayar .= '</div>';
-
-                $notifikasiPesananDibayar[] = $pesanDibayar;
+        foreach ($notifikasi as $notification) {
+            if ($notification->status === "unread") {
+                $notification->status = "read";
+                $notification->save();
             }
         }
 
-
         return view('wargoCatering.userNotification', [
-            'notifikasiPesananDibuat' => $notifikasiPesananDibuat,
-            // 'notifikasiPesananDibayar' => $notifikasiPesananDibayar,
+            'notifikasi' => $notifikasi,
         ]);
     }
 

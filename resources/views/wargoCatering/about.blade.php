@@ -5,11 +5,14 @@
         <div class="container">
             <div class="row align-items-center py-5">
                 <div class="col-md-8 text-white">
-                    <p class="fs-24 fw-bold" style="letter-spacing: 2px;">WARGO CATERING</p>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    <p class="fs-24 fw-bold title-section" style="letter-spacing: 2px;">WARGO CATERING</p>
+                    <p class=" text-indent-1 fs-16 text-justify mt-3">
+                        Wargo Catering adalah salah satu usaha yang bergerak di bidang penyediaan makanan dan minuman
+                        (katering) untuk acara atau keperluan tertentu. Wargo Catering didirikan pada tahun 1990 oleh Musiem
+                        dan telah berpengalaman dalam menyediakan layanan katering selama lebih dari 33 tahun. Wargo
+                        Catering menawarkan layanan katering yang beragam, mulai dari katering harian, acara ulang tahun,
+                        hingga acara pernikahan. Usaha Wargo Catering berlokasi di Jalan Karna Sosial Jalan Purwosari Gang
+                        Purwosari 2 Nomor 25D Kecamatan Pontianak Selatan Kota Pontianak Kalimantan Barat kode pos 78121.
                     </p>
                 </div>
                 <div class="col-md-4 p-4">
