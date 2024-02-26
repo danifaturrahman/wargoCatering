@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Alat;
 use App\Models\Cart;
 use App\Models\DetailPesanan;
 use App\Models\FAQ;
@@ -26,22 +27,20 @@ class wargoCateringController extends Controller
         return view('wargoCatering.coba');
     }
 
-    public function main()
-    {
-    }
-
     public function home()
     {
         $faq = FAQ::all();
 
         $menuTerbaru = Menu::orderByDesc('id')
-            ->limit(3) // Ganti dengan jumlah menu terlaris yang ingin ditampilkan
+            ->limit(4) // Ganti dengan jumlah menu terlaris yang ingin ditampilkan
             ->get();
 
+        $alat = Alat::all();
 
         return view('wargoCatering.home', [
             'faq' => $faq,
             'menuTerbaru' => $menuTerbaru,
+            'alat' => $alat,
         ]);
     }
 
@@ -55,11 +54,11 @@ class wargoCateringController extends Controller
         $kategori = Kategori::all();
 
         $menuTerlaris = Menu::orderByDesc('jumlah_pesanan')
-            ->limit(3) // Ganti dengan jumlah menu terlaris yang ingin ditampilkan
+            ->limit(4) // Ganti dengan jumlah menu terlaris yang ingin ditampilkan
             ->get();
 
         $menuTerbaru = Menu::orderByDesc('id')
-            ->limit(3) // Ganti dengan jumlah menu terlaris yang ingin ditampilkan
+            ->limit(4) // Ganti dengan jumlah menu terlaris yang ingin ditampilkan
             ->get();
 
         $semuaMenu = Menu::all();

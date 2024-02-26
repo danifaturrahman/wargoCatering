@@ -179,7 +179,7 @@ class PesananController extends Controller
         // Tambahkan notifikasi saat checkout berhasil
         $notification = new Notifikasi();
         $notification->user_id = $user_id;
-        $notification->pesan = "Pesanan Anda berhasil dibuat. Silakan lakukan pembayaran.";
+        $notification->pesan = "Pesanan Anda dengan nomor " . $pesanan->nomor_pesanan . "  berhasil dibuat. Silakan lakukan pembayaran.";
         $notification->status = "unread";
         $notification->save();
 
@@ -189,6 +189,30 @@ class PesananController extends Controller
         // Redirect ke halaman terima kasih atau halaman sukses checkout
         return redirect('/payment-dp/' . $pesananId)->with('success', 'Pesanan berhasil dibuat. Silakan lakukan pembayaran.');
     }
+
+    public function deletePesanan($id)
+    {
+        $pesanan = Pesanan::findOrFail($id);
+
+        if ($pesanan->status_pesanan === 'Belum Dibayar') {
+            // Hapus semua detail pesanan terkait
+            $pesanan->detail_pesanan()->delete();
+
+            // Hapus pesanan utama
+            $pesanan->delete();
+
+            // Buat notifikasi pembatalan pesanan berhasil
+            $notification = new Notifikasi();
+            $notification->user_id = $pesanan->user->id; // Sesuaikan dengan hubungan antara Pesanan dan User
+            $notification->pesan = "Pesanan Anda dengan nomor " . $pesanan->nomor_pesanan . " berhasil dibatalkan.";
+            $notification->status = "unread";
+            $notification->save();
+
+            return redirect('/user-dashboard-order')->with('success', 'Pesanan berhasil dibatalkan.');
+        } else {
+            return redirect('/user-dashboard-order')->with('error', 'Hanya pesanan dengan status "Belum Bayar" yang dapat dihapus.');
+        }
+    }   
 
     public function paymentDp($id)
     {
@@ -222,10 +246,6 @@ class PesananController extends Controller
 
 
         $snapToken = \Midtrans\Snap::getSnapToken($params);
-
-        if (!$snapToken) {
-            redirect()->back()->with('error', 'Token pembayaran tidak ditemukan, silahkan coba lagi!');
-        }
 
         return view('wargoCatering.paymentDp', [
             'pesanan' => $pesanan,
@@ -266,10 +286,6 @@ class PesananController extends Controller
 
         $snapToken = \Midtrans\Snap::getSnapToken($params);
 
-        if (!$snapToken) {
-            redirect()->back()->with('error', 'Token pembayaran tidak ditemukan, silahkan coba lagi!');
-        }
-
         return view('wargoCatering.paymentPelunasan', [
             'pesanan' => $pesanan,
             'snapToken' => $snapToken
@@ -296,7 +312,7 @@ class PesananController extends Controller
                 // Tambahkan notifikasi saat pembayaran DP berhasil
                 $notification = new Notifikasi();
                 $notification->user_id = $user_id;
-                $notification->pesan = "Pembayaran uang muka berhasil. Mohon tunggu untuk pelunasan.";
+                $notification->pesan = "Pembayaran uang muka pesanan Anda dengan nomor " . $pesanan->nomor_pesanan . "  berhasil. Mohon tunggu untuk pelunasan.";
                 $notification->status = "unread";
                 $notification->save();
             } else {
@@ -315,7 +331,7 @@ class PesananController extends Controller
                 // Tambahkan notifikasi saat pelunasan berhasil
                 $notification = new Notifikasi();
                 $notification->user_id = $user_id;
-                $notification->pesan = "Pembayaran pelunasan berhasil. Pesanan Anda telah lunas.";
+                $notification->pesan = "Pembayaran pelunasan pesanan Anda dengan nomor " . $pesanan->nomor_pesanan . "   berhasil. Pesanan Anda telah lunas.";
                 $notification->status = "unread";
                 $notification->save();
             }

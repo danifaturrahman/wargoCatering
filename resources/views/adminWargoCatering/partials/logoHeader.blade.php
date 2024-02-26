@@ -1,5 +1,5 @@
 <!-- Logo Header -->
-<div class="logo-header" style="background-color: #1e651b">
+<div class="logo-header" style="background-color: #C15E28">
 
     <a href="index.html" class="logo text-white text-decoration-none ">
         <img src="/assets/img/logo-wargo-catering3.png" alt="navbar brand" style="width: 20%; margin"

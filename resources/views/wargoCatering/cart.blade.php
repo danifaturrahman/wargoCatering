@@ -90,8 +90,8 @@
                                     @endphp
                                 @empty
                                     <div class="text-center">
-                                        <img src="/assets/img/empty-cart.png" style="width: 500px; height: 400px;"
-                                            alt="">
+                                        <img src="/assets/img/empty-cart.png" class="img-fluid"
+                                            style="width: 500px; height: 400px;" alt="">
                                         <p class="fs-24 fw-bold">"Keranjang belanja Anda masih kosong."</p>
                                     </div>
                                 @endforelse

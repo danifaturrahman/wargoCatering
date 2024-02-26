@@ -7,24 +7,24 @@
             <form action="/checkout-pesanan" method="POST">
                 @csrf
                 <div class="row">
-                    <div class="col-12 col-lg-7 mb-3">
+                    <div class="col-12 col-md-7 mb-3">
                         <div class="p-3 border border-secondary-subtle rounded-3 bg-white">
                             <!-- Loop through the cart items -->
                             @foreach ($cart as $menu)
                                 <div class="row mb-2">
-                                    <div class="col-2">
+                                    <div class="col-md-2 col-10">
                                         <img src="{{ asset('storage/' . $menu->menu->gambar) }}"
                                             class="rounded-3 border img-fluid"
                                             style="width: 80px; height: 80px; object-fit: cover">
                                     </div>
-                                    <div class="col-3">
+                                    <div class="col-md-3 col-4">
                                         <p class="fs-5 fw-semibold">{{ $menu->menu->nama }}</p>
                                     </div>
-                                    <div class="col-3">
+                                    <div class="col-md-3 col-4">
                                         <p class="fs-5 fw-semibold">Rp. {{ number_format($menu->menu->harga, 0, ',', '.') }}
                                         </p>
                                     </div>
-                                    <div class="col-3">
+                                    <div class="col-md-3 col-4">
                                         <p class="fs-5 fw-regular text-muted text-end">{{ $menu->jumlah }}x items</p>
                                     </div>
                                 </div>
@@ -66,7 +66,7 @@
                             </div>
 
                             <div class="row">
-                                <div class="form-group mb-4 col-6">
+                                <div class="form-group mb-4 col-10 col-md-6">
                                     <label for="keterangan" class="fw-semibold">Keterangan</label>
                                     <select name="keterangan"
                                         class="form-control @error('keterangan')
@@ -83,7 +83,7 @@
                                     @enderror
                                 </div>
 
-                                <div class="form-group mb-4 col-6">
+                                <div class="form-group mb-4 col-10 col-md-6">
                                     <label for="ongkos_kirim" class="fw-semibold">Ongkos Kirim</label>
                                     <select name="ongkos_kirim"
                                         class="form-control @error('ongkos_kirim')
@@ -105,7 +105,7 @@
                             </div>
 
                             <div class="row">
-                                <div class="form-group mb-4 col-6">
+                                <div class="form-group mb-4 col-md-6 col-10">
                                     <label for="inputtanggal" class="fw-semibold">Tanggal Ambil / Kirim</label>
                                     <input type="date"
                                         class="form-control mt-1 @error('tanggal')
@@ -121,7 +121,7 @@
                                 </div>
 
                                 <div class="form-group
-                                        mb-4 col-6">
+                                        mb-4 col-md-6 col-10">
                                     <label for="inputjam" class="fw-semibold">Jam Ambil / Kirim</label>
                                     <input type="time"
                                         class="form-control mt-1 @error('jam')

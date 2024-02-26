@@ -48,7 +48,7 @@
                                     @foreach ($faq as $faq)
                                         <tr class="text-center">
                                             <td>{{ $id++ }}</td>
-                                            <td>{{ $faq->pertanyaan }}</td>
+                                            <td>{{ Str::limit($faq->pertanyaan, 20) }}</td>
                                             <td>{!! Str::limit($faq->deskripsi, 20) !!}</td>
                                             <td class="row justify-content-center align-items-center">
                                                 <a href="" class="btn btn-primary fs-16">Detail</a>

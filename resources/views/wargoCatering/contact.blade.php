@@ -11,7 +11,7 @@
                 </p>
             </div>
             <div class="row">
-                <div class="col-6 p-5">
+                <div class="col-12 col-md-6 p-5">
                     @if (session()->has('success'))
                         <div class="alert alert-success" role="alert">
                             {{ session('success') }}
@@ -67,9 +67,9 @@
                         </div>
                     </form>
                 </div>
-                <div class="col-6 p-5">
+                <div class="col-12 col-md-6 p-5">
                     <div class="row">
-                        <p class="fs-20 fw-semibold">Media Sosial</p>
+                        <p class="fs-20 fw-semibold">Kontak</p>
                         <div class="col-1 text-center">
                             <p class="fs-15 fw-regular"><i class="
                                 fas fa-phone"></i></p>
@@ -81,7 +81,7 @@
                         </div>
                     </div>
                     <div class="row mt-2">
-                        <p class="fs-20 fw-semibold">Kontak</p>
+                        <p class="fs-20 fw-semibold">Media Sosial</p>
                         <div class="col-1 text-center">
                             <p class="fs-15 fw-regular"><i class="
                                 fab fa-whatsapp"></i></p>

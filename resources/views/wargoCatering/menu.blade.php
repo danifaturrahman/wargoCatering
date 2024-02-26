@@ -37,13 +37,13 @@
             <div class="row justify-content-center">
 
                 @foreach ($menuTerlaris as $menuTerlaris)
-                    <div class="col-lg-4 col-md-12 mb-4">
+                    <div class="col-lg-3 col-8 col-md-12 mb-4">
                         <div class="card">
                             <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
                                 data-mdb-ripple-color="light">
                                 <a href="/detail-menu/{{ $menuTerlaris->id }}">
                                     <img src="{{ asset('storage/' . $menuTerlaris->gambar) }}" class="img-fluid rounded-3"
-                                        style="width: 450px; height: 400px; object-fit: cover" />
+                                        style="width: 280px; height: 230px; object-fit: cover" />
                                 </a>
                             </div>
 
@@ -82,13 +82,13 @@
             <div class="row justify-content-center">
 
                 @foreach ($menuTerbaru as $menuTerbaru)
-                    <div class="col-lg-4 col-md-12 mb-4">
+                    <div class="col-lg-3 col-8 col-md-12 mb-4">
                         <div class="card">
                             <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
                                 data-mdb-ripple-color="light">
                                 <a href="/detail-menu/{{ $menuTerbaru->id }}">
                                     <img src="{{ asset('storage/' . $menuTerbaru->gambar) }}" class="img-fluid rounded-3"
-                                        style="width: 450px; height: 400px; object-fit: cover" />
+                                        style="width: 280px; height: 230px; object-fit: cover" />
                                 </a>
                             </div>
 
@@ -126,13 +126,13 @@
             <div class="row justify-content-center">
 
                 @foreach ($semuaMenu as $semuaMenu)
-                    <div class="col-lg-4 col-md-12 mb-4">
+                    <div class="col-lg-3 col-8 col-md-12 mb-4">
                         <div class="card">
                             <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
                                 data-mdb-ripple-color="light">
                                 <a href="/detail-menu/{{ $semuaMenu->id }}">
                                     <img src="{{ asset('storage/' . $semuaMenu->gambar) }}" class="img-fluid rounded-3"
-                                        style="width: 450px; height: 400px; object-fit: cover" />
+                                        style="width: 280px; height: 230px; object-fit: cover" />
                                 </a>
                             </div>
 

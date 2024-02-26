@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminWargoCateringController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PesananController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\wargoCateringController;
@@ -16,6 +17,11 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+//Login
+Route::get('/login/google', [LoginController::class, 'redirectToGoogle']);
+Route::get('/login/google/callback', [LoginController::class, 'redirectToGoogleCallback']);
+
 
 Route::get('/coba', [wargoCateringController::class, 'coba']);
 
@@ -44,6 +50,7 @@ Route::group(['middleware' => ['auth', 'Pelanggan']], function () {
     Route::post('/update-jumlah', [PesananController::class, 'updateJumlah']);
     Route::get('/cart/remove/{id}', [PesananController::class, 'removeCartItem']);
     Route::post('/checkout-pesanan', [PesananController::class, 'checkoutPesanan']);
+    Route::delete('/delete-pesanan/{id}', [PesananController::class, 'deletePesanan']);
     Route::get('/payment-dp/{id}', [PesananController::class, 'paymentDp']);
     Route::get('/payment-pelunasan/{id}', [PesananController::class, 'paymentPelunasan']);
 
@@ -127,6 +134,7 @@ Route::group(['middleware' => ['auth', 'Admin']], function () {
     Route::put('/dashboard/laporan-transaksi/{id}', [AdminWargoCateringController::class, 'updateLaporanTransaksi']);
     Route::put('/dashboard/peminjaman-alat/{id}', [AdminWargoCateringController::class, 'updatePeminjamanAlat']);
     Route::put('/dashboard/faq/{id}', [AdminWargoCateringController::class, 'updateFaq']);
+    Route::put('/ubah-status-selesai/{id}', [AdminWargoCateringController::class, 'updateStatusSelesai']);
 
     /* Form Delete */
 

@@ -14,6 +14,7 @@ use App\Models\PeminjamanAlat;
 use App\Models\Pesanan;
 use App\Models\PesanKritik;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -204,7 +205,8 @@ class AdminWargoCateringController extends Controller
     {
         $validatedData = $request->validate([
             'nama' => 'required',
-            'gambar' => 'image|required'
+            'gambar' => 'image|required',
+            'jumlah' => 'required',
         ]);
 
         $validatedData['gambar'] = $request->file('gambar')->store('images');
@@ -227,6 +229,7 @@ class AdminWargoCateringController extends Controller
         $validatedData = $request->validate([
             'nama' => 'required',
             'gambar' => 'image',
+            'jumlah' => 'required',
         ]);
 
         if ($request->hasFile('gambar')) {
@@ -386,6 +389,34 @@ class AdminWargoCateringController extends Controller
         ]);
     }
 
+    public function showPesananPelanggan($id)
+    {
+        $pesanan = Pesanan::findOrFail($id);
+        $tanggal_transaksi = Carbon::parse($pesanan->tanggal_pesanan_dibuat)->isoFormat('dddd, DD MMMM YYYY');
+        $tanggal_dikirim = Carbon::parse($pesanan->tanggal_pesanan_dikirim)->isoFormat('dddd, DD MMMM YYYY');
+
+        return view('adminWargoCatering.Show.pesananPelangganShow', [
+            'pesanan' => $pesanan,
+            'tanggal_transaksi' => $tanggal_transaksi,
+            'tanggal_dikirim' => $tanggal_dikirim,
+        ]);
+    }
+
+
+    public function updateStatusSelesai($id)
+    {
+        $pesanan = Pesanan::findOrFail($id);
+
+        if ($pesanan->status_pesanan !== 'Selesai') {
+            $pesanan->status_pesanan = 'Selesai';
+            $pesanan->save();
+
+            return redirect('/dashboard/pesanan-pelanggan')->with('success', 'Status pesanan berhasil diubah menjadi Selesai.');
+        } else {
+            return redirect('/dashboard/pesanan-pelanggan')->with('error', 'Status pesanan sudah berada dalam keadaan Selesai.');
+        }
+    }
+
     // DATA PELANGGAN
 
     public function dataPelanggan()
@@ -419,7 +450,8 @@ class AdminWargoCateringController extends Controller
 
     public function peminjamanAlat()
     {
-        $peminjamanAlat = PeminjamanAlat::all();
+        $peminjamanAlat = PeminjamanAlat::orderBy('created_at', 'desc')->get();
+
 
         return view('adminWargoCatering.peminjamanAlat', [
             'peminjamanAlat' => $peminjamanAlat

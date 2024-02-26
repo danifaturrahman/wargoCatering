@@ -24,9 +24,8 @@
                                         {{ $convertToStarRating($item->nilai) }}
                                     </p>
                                     <div class="mt-5 mb-4">
-                                        <img src="{{ $item->user->avatar }}"
-                                            class="rounded-circle img-fluid shadow-1-strong" alt="sample image"
-                                            width="100" height="100" />
+                                        <img src="/assets/img/profile.jpg" class="rounded-circle img-fluid shadow-1-strong"
+                                            alt="sample image" width="100" height="100" />
                                     </div>
                                     <p class="text-muted mb-0">- {{ $item->user->name }}</p>
                                 </div>

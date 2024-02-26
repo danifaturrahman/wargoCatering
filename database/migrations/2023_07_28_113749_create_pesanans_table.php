@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('keterangan_pengiriman');
             $table->string('harga_pengiriman');
             $table->decimal('total_harga', 10, 2);
-            $table->enum('status_pesanan', ['Belum Dibayar', 'Menunggu Pelunasan', 'Lunas']);
+            $table->enum('status_pesanan', ['Belum Dibayar', 'Menunggu Pelunasan', 'Lunas', 'Selesai']);
             $table->date('tanggal_pesanan_dibuat');
             $table->date('tanggal_pesanan_dikirim');
             $table->time('jam_pesanan_dikirim');

@@ -20,4 +20,9 @@ class Pesanan extends Model
     {
         return $this->hasMany(DetailPesanan::class);
     }
+
+    public function peminjaman_alat()
+    {
+        return $this->hasMany(PeminjamanAlat::class);
+    }
 }

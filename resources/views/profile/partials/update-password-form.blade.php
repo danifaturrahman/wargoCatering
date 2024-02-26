@@ -1,4 +1,4 @@
-<section>
+<section style="min-height: 30vh">
     <header>
         <p class="fs-24 fw-bold text-gray-900">
             Ubah Password

@@ -49,12 +49,42 @@
                                             <td>{{ \Carbon\Carbon::parse($pesanan->tanggal_pesanan_dibuat)->isoFormat('dddd, DD MMMM YYYY') }}
                                             </td>
                                             <td>{{ $pesanan->user->name }}</td>
-                                            <td>{{ $pesanan->status_pesanan }}</td>
+                                            <td>
+                                                @if ($pesanan->status_pesanan === 'Belum Dibayar')
+                                                    <a class="btn btn-info btn-sm fs-16">
+                                                        {{ $pesanan->status_pesanan }}
+                                                    </a>
+                                                @endif
+                                                @if ($pesanan->status_pesanan === 'Menunggu Pelunasan')
+                                                    <a class="btn btn-danger btn-sm fs-16">
+                                                        {{ $pesanan->status_pesanan }}
+                                                    </a>
+                                                @endif
+                                                @if ($pesanan->status_pesanan === 'Lunas')
+                                                    <a class="btn btn-success btn-sm fs-16">
+                                                        {{ $pesanan->status_pesanan }}
+                                                    </a>
+                                                @endif
+                                                @if ($pesanan->status_pesanan === 'Selesai')
+                                                    <a class="btn btn-warning btn-sm fs-16">
+                                                        {{ $pesanan->status_pesanan }}
+                                                    </a>
+                                                @endif
+                                            </td>
                                             <td>Rp
                                                 {{ number_format($pesanan->total_harga, 0, ',', '.') }}</td>
                                             <td>
-                                                <a href="" class="btn btn-primary btn-sm fs-16">Detail</a>
-                                                <a href="" class="btn btn-success btn-sm fs-16">Pembayaran</a>
+                                                <a href="/dashboard/pesanan-pelanggan/{{ $pesanan->id }}/show"
+                                                    class="btn btn-primary btn-sm fs-16 mb-2">Detail</a>
+                                                @if ($pesanan->status_pesanan === 'Lunas')
+                                                    <form action="/ubah-status-selesai/{{ $pesanan->id }}" method="POST">
+                                                        @csrf
+                                                        @method('PUT')
+                                                        <button type="submit" class="btn btn-warning btn-sm fs-16"
+                                                            onclick="confirm('Ubah status pesanan menjadi selesai?')">Pesanan
+                                                            Selesai</button>
+                                                    </form>
+                                                @endif
                                             </td>
                                         </tr>
                                     @endforeach

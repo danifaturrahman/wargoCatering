@@ -1,5 +1,5 @@
 <!-- Navbar Header -->
-<nav class="navbar navbar-header navbar-expand-lg" style="background-color: #195817">
+<nav class="navbar navbar-header navbar-expand-lg" style="background-color: #a24e21">
     <div class="container-fluid">
         <div class="text-white">
             Halaman Administrator

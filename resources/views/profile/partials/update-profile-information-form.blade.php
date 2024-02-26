@@ -1,4 +1,4 @@
-<section class="col-md-12">
+<section class="col-md-12" style="min-height: 30vh">
     <header>
         <p class="fs-24 fw-bold text-gray-900">
             Profil

@@ -40,7 +40,8 @@
                                     <tr class="text-center">
                                         <th>No</th>
                                         <th>Nama</th>
-                                        <th>Foto</th>
+                                        <th>Gambar</th>
+                                        <th>Jumlah</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -51,9 +52,10 @@
                                             <td>{{ $alat->nama }}</td>
                                             <td class="text-center"><img src="{{ asset('storage/' . $alat->gambar) }}"
                                                     style="height: 100px; width: 100px; object-fit: cover"></td>
+                                            <td>{{ $alat->jumlah }}</td>
                                             <td class="row justify-content-center align-items-center">
-                                                <a href="/dashboard/alat-katering/{{ $alat->id }}"
-                                                    class=" btn btn-primary">Detail</a>
+                                                {{-- <a href="/dashboard/alat-katering/{{ $alat->id }}"
+                                                    class=" btn btn-primary">Detail</a> --}}
                                                 <a href="/dashboard/alat-katering/{{ $alat->id }}/edit"
                                                     class=" btn btn-warning mx-2">Update</a>
                                                 <form action="/dashboard/alat-katering/{{ $alat->id }}" method="POST"

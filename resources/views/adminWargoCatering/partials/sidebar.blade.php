@@ -107,7 +107,7 @@
 
                 <li class="nav-item {{ Request::is('dashboard/pesan-kritik*') ? 'active' : '' }}">
                     <a href="/dashboard/pesan-kritik">
-                        <i class="fas fa-book"></i>
+                        <i class="fas fa-book-open"></i>
                         <p>Kritik Saran</p>
                     </a>
                 </li>

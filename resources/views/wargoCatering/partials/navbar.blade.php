@@ -79,8 +79,10 @@
                 <a class="nav-icon position-relative text-decoration-none fs-20" href="/cart">
                     <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
                     @if (Auth::check())
-                        <span
-                            class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-danger">{{ Auth::user()->cart->count() }}</span>
+                        @if (Auth::user()->cart->count() > 0)
+                            <span
+                                class="position-absolute top-0 left-100 translate-middle badge rounded-pill fs-12 bg-danger text-white">{{ Auth::user()->cart->count() }}</span>
+                        @endif
                     @endif
                 </a>
 
@@ -89,7 +91,7 @@
                     <i class="fa fa-fw fa-bell text-dark mr-1"></i>
                     @if ($unreadNotificationsCount > 0)
                         <span
-                            class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-danger">{{ $unreadNotificationsCount }}</span>
+                            class="position-absolute top-0 left-100 translate-middle badge rounded-pill fs-12 bg-danger text-white">{{ $unreadNotificationsCount }}</span>
                     @endif
                 </a>
 
@@ -101,7 +103,6 @@
                     <ul class="dropdown-menu p-2">
                         <li><a class="dropdown-item fs-16" href="/profile">Profile</a></li>
                         <li><a class="dropdown-item" href="/user-dashboard-order">Pesanan</a></li>
-                        <li><a class="dropdown-item" href="/user-dashboard-notifikasi">Notifikasi</a></li>
                         <hr>
                         @if (Auth::check())
                             <li>

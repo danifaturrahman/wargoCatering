@@ -33,6 +33,9 @@
                             </div>
                             <div class="col-md-12">
                                 <button type="submit" class="btn btn-primary">Filter</button>
+                                <!-- Tombol Filter per Minggu -->
+                                <button type="button" class="btn btn-secondary" id="filterWeek">Filter per Minggu</button>
+
                             </div>
                         </div>
                     </form>
@@ -116,5 +119,22 @@
             window.print();
             document.body.innerHTML = originalContents;
         }
+
+        document.getElementById('filterWeek').addEventListener('click', function() {
+            var today = new Date();
+            var endDate = new Date(today);
+            var startDate = new Date(today);
+
+            // Mengatur endDate ke hari ini
+            endDate.setHours(0, 0, 0, 0);
+
+            // Mengatur startDate ke 7 hari yang lalu
+            startDate.setDate(today.getDate() - 7);
+            startDate.setHours(0, 0, 0, 0);
+
+            // Mengisi nilai input dengan tanggal yang dihitung
+            document.querySelector('[name="start_date"]').valueAsDate = startDate;
+            document.querySelector('[name="end_date"]').valueAsDate = endDate;
+        });
     </script>
 @endsection

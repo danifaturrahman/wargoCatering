@@ -54,6 +54,20 @@
                     </div>
                 @enderror
             </div>
+            <div class="mb-3">
+                <label for="jumlah" class="form-label">Jumlah</label>
+                <input type="number"
+                    class="form-control w-50 
+                @error('jumlah')
+                    is-invalid
+                @enderror"
+                    id="jumlah" name="jumlah" autofocus value="{{ old('jumlah', $alat->jumlah) }}">
+                @error('jumlah')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
             <button type="submit" class="btn btn-primary mb-3">Submit</button>
             <a class="text-decoration-none btn btn-warning mb-3 text-white"
                 href="{{ URL::previous() }}

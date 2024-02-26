@@ -19,6 +19,11 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card">
+                                @if (session()->has('success'))
+                                    <div class="alert alert-success" role="alert">
+                                        {{ session('success') }}
+                                    </div>
+                                @endif
                                 <div class="card-body">
                                     <div class="table-responsive">
                                         <table id="basic-datatabless" class="display table table-striped table-hover">
@@ -54,6 +59,12 @@
                                                                     {{ $pesanan->status_pesanan }}
                                                                 </a>
                                                             @endif
+                                                            @if ($pesanan->status_pesanan === 'Selesai')
+                                                                <a class="btn btn-warning btn-sm fs-16">
+                                                                    {{ $pesanan->status_pesanan }}
+                                                                </a>
+                                                            @endif
+                                                        </td>
                                                         </td>
                                                         <td>Rp
                                                             {{ number_format($pesanan->total_harga, 0, ',', '.') }}
@@ -67,7 +78,8 @@
                                                             </form> --}}
                                                             @if ($pesanan->status_pesanan === 'Belum Dibayar')
                                                                 <form class="mx-2"
-                                                                    action="/payment-dp/{{ $pesanan->id }}" method="get">
+                                                                    action="/payment-dp/{{ $pesanan->id }}"
+                                                                    method="get">
                                                                     @csrf
                                                                     <button type="submit"
                                                                         class="btn btn-success btn-sm fs-16">Bayar
@@ -82,6 +94,17 @@
                                                                     <button type="submit"
                                                                         class="btn btn-danger btn-sm fs-16">Bayar
                                                                         Pelunasan</button>
+                                                                </form>
+                                                            @endif
+
+                                                            @if ($pesanan->status_pesanan === 'Belum Dibayar')
+                                                                <form action="/delete-pesanan/{{ $pesanan->id }}"
+                                                                    method="POST" class="d-inline">
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                    <button type="submit"
+                                                                        class="btn btn-danger btn-sm fs-16"
+                                                                        onclick="return confirm('Apakah Anda yakin ingin menghapus pesanan ini?')">Batalkan</button>
                                                                 </form>
                                                             @endif
                                                             @if ($pesanan->status_pesanan === 'Lunas')
